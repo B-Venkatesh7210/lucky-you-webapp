@@ -1,0 +1,49 @@
+:root {
+  --clr-yellow-1: #F6C90E;
+  --clr-yellow-2: #F9E286;
+  --clr-blue: #0f111a;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.mainBg{
+  background-color: var(--clr-blue);
+  height: 100vh;
+  width: 100%;
+}
+
+.whiteText{
+  font-family: Hand Drawn Shapes;
+  color: white;
+}
+
+.yellowText{
+  font-family: Guava Candy;
+  color: var(--clr-yellow-1);
+}
+
+.buttonText{
+  font-family: Hand Drawn Shapes;
+  color: black;
+}
+
+.button{
+  background: var(--clr-yellow-2);
+  border:  5.84px solid #1B1A17;
+  box-shadow: 11.68px 11.68px 0px #FFFFFF;
+  box-sizing: border-box;
+  border-radius: 20px;
+
+}

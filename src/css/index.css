@@ -24,6 +24,26 @@ code {
   width: 100%;
 }
 
+.leftBg{
+  background-color: var(--clr-blue);
+  height: 100vh;
+  width: 100%;
+  background-image: url("../img/Vector1.png");
+  background-size: 40rem 40rem;
+  background-repeat: no-repeat;
+  background-position: left;
+}
+
+.rightBg{
+  background-color: var(--clr-blue);
+  height: 100vh;
+  width: 100%;
+  background-image: url("../img/Vector2.png");
+  background-size: 40rem 40rem;
+  background-repeat: no-repeat;
+  background-position: right;
+}
+
 .whiteText{
   font-family: Hand Drawn Shapes;
   color: white;

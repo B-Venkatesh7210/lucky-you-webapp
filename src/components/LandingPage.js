@@ -3,7 +3,7 @@ import Logo from "../img/LuckyYou Logo.png";
 
 const Home = () => {
   return (
-    <div className="mainBg">
+    <div className="mainBg"> 
       <div
         style={{
           display: "flex",

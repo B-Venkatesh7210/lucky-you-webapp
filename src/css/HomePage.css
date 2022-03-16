@@ -1,0 +1,32 @@
+.connectWallet {
+  position: absolute;
+  right: 4rem;
+}
+
+.giveAwayDiv {
+  background: var(--clr-yellow-2);
+  border: 3.5px solid #1b1a17;
+  box-shadow: 9.68px 9.68px 0px #ffffff;
+  box-sizing: border-box;
+  border-radius: 20px;
+  display: "flex";
+  flex-direction: "column";
+  align-items: "center";
+  justify-content: "space-between";
+  padding: "2rem 0rem";
+}
+
+.participateBtn {
+  background-color: #54cd4a;
+  border: 5.31973px solid #000000;
+  box-sizing: border-box;
+  border-radius: 21.5427px;
+}
+
+.giveawayDataDiv {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 1rem 1rem;
+  justify-content: space-between;
+}

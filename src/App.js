@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Web3 from "web3";
 import LandingPage from "./components/LandingPage";
+import HomePage from "./components/HomePage/HomePage";
 import { useMoralis } from "react-moralis";
 import abi from "./utils/LuckyYou.json";
 import Chains from "./components/Chains";
@@ -159,7 +160,8 @@ function App() {
 
   return (
     <div>
-      <LandingPage/>
+      {/* <LandingPage/> */}
+      <HomePage/>
     </div>
   )
 }

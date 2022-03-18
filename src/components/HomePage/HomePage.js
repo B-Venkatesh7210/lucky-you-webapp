@@ -2,6 +2,7 @@ import React from "react";
 import Logo from "../../img/LuckyYou Logo.png";
 import EthLogo from "../../img/Ethereum.png";
 import Emoji from "../../img/emoji.png";
+import Navbar from "../Navbar";
 
 const HomePage = () => {
   return (
@@ -12,17 +13,10 @@ const HomePage = () => {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "2rem 0rem",
+          padding: "2rem 2rem",
         }}
       >
-        <button
-          className="button connectWallet"
-          style={{ height: "8vh", width: "15%", marginTop: "0.8rem" }}
-        >
-          <span className="buttonText" style={{ fontSize: "26px" }}>
-            Connect Wallet
-          </span>
-        </button>
+      <Navbar isSticky />
         <img
           alt="Lucky You Logo"
           src={Logo}
@@ -33,12 +27,12 @@ const HomePage = () => {
           style={{ height: "10vh", width: "20%", marginTop: "1.5rem" }}
         >
           <span className="buttonText" style={{ fontSize: "28px" }}>
-            Create Giveaway
+            Create a Giveaway
           </span>
         </button>
         <span
           className="whiteText"
-          style={{ fontSize: "48px", marginTop: "6rem" }}
+          style={{ fontSize: "60px", marginTop: "6rem" }}
         >
           List of Giveaways
         </span>
@@ -53,7 +47,7 @@ const GiveawayDiv = () => {
     <>
       <div
         className="giveAwayDiv"
-        style={{ height: "48vh", width: "55%", marginTop: "3rem" }}
+        style={{ height: "50vh", width: "55%", marginTop: "3rem" }}
       >
         <div className="giveawayDataDiv blackText">
           <span style={{ fontSize: "1.2rem" }}>0xhhsdjdadfjaiujhda3857</span>
@@ -63,7 +57,7 @@ const GiveawayDiv = () => {
             </span>
           </span>
         </div>
-        <div className="giveawayDataDiv" style={{ margin: "2.8rem 1rem" , width:"80%"}}>
+        <div className="giveawayDataDiv" style={{ margin: "2.8rem 1rem" , width:"100%"}}>
           <span
             className="buttonText"
             style={{
@@ -80,6 +74,7 @@ const GiveawayDiv = () => {
               display: "flex",
               flexDirection: "column",
               textAlign: "center",
+              marginRight: "1rem"
             }}
           >
             <span className="blackText" style={{ fontSize: "1.2rem" }}>
@@ -102,6 +97,7 @@ const GiveawayDiv = () => {
               display: "flex",
               flexDirection: "column",
               textAlign: "center",
+              
             }}
           >
             <span className="blackText" style={{ fontSize: "1.2rem" }}>
@@ -112,8 +108,8 @@ const GiveawayDiv = () => {
             </span>
           </span>
           <button
-            className="participateBtn"
-            style={{ width: "17rem", height: "5rem" }}
+            className="greenButton"
+            style={{ width: "17rem", height: "4rem" }}
           >
             <span
               style={{
@@ -121,7 +117,7 @@ const GiveawayDiv = () => {
                 justifyContent: "center",
                 alignItems: "center",
                 fontFamily: "Hand Drawn Shapes",
-                fontSize: "2.5rem",
+                fontSize: "32px",
                 color: "black",
               }}
             >

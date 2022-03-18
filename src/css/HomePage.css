@@ -16,11 +16,19 @@
   padding: "2rem 0rem";
 }
 
-.participateBtn {
+.greenButton {
   background-color: #54cd4a;
   border: 5.31973px solid #000000;
   box-sizing: border-box;
   border-radius: 21.5427px;
+}
+
+.greenButton2{
+  background-color: #54cd4a;
+  border: 5.31973px solid #000000;
+  box-shadow: 9.68px 9.68px 0px #ffffff;
+  box-sizing: border-box;
+  border-radius: 20px;
 }
 
 .giveawayDataDiv {
@@ -29,4 +37,10 @@
   align-items: center;
   margin: 1rem 1rem;
   justify-content: space-between;
+}
+
+.textField{
+  background-color: #f9e286;
+  border: none;
+  outline: none;
 }

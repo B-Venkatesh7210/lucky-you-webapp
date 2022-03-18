@@ -60,6 +60,16 @@ code {
   color: black;
 }
 
+.normalText{
+  font-family: Hand Drawn Shapes;
+  color: black;
+}
+
+.normalText2{
+  font-family: GunPlay;
+  color: black;
+}
+
 .buttonText {
   font-family: Hand Drawn Shapes;
   color: black;
@@ -71,4 +81,13 @@ code {
   box-shadow: 11.68px 11.68px 0px #ffffff;
   box-sizing: border-box;
   border-radius: 20px;
+}
+
+.button2 {
+  background: var(--clr-yellow-2);
+  border: 3.5px solid #1b1a17;
+  box-shadow: 9.68px 9.68px 0px #ffffff;
+  box-sizing: border-box;
+  border-radius: 20px;
+  padding: 10px;
 }

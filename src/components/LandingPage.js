@@ -1,9 +1,10 @@
 import React from "react";
 import Logo from "../img/LuckyYou Logo.png";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
-    <div className="mainBg"> 
+    <div className="mainBg">
       <div
         style={{
           display: "flex",
@@ -34,14 +35,16 @@ const Home = () => {
             in giveaways of Ethereum coins.
           </span>
         </div>
-        <button
-          className="button"
-          style={{ height: "10vh", width: "20%", marginTop: "1rem" }}
-        >
-          <span className="buttonText" style={{ fontSize: "28px" }}>
-            Enter the Dapp
-          </span>
-        </button>
+        <Link to="/home">
+          <button
+            className="button"
+            style={{ height: "10vh", width: "15rem", marginTop: "1rem" }}
+          >
+            <span className="normalText" style={{ fontSize: "28px" }}>
+              Enter the Dapp
+            </span>
+          </button>
+        </Link>
       </div>
     </div>
   );

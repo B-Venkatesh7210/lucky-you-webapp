@@ -4,7 +4,7 @@ import { useMoralis } from "react-moralis";
 import abi from "./utils/LuckyYou.json";
 import Chains from "./components/Chains";
 import Wallet from "./components/Wallet/Wallet";
-import { ethers } from "moralis/node_modules/ethers";
+// import { ethers } from "moralis/node_modules/ethers";
 import Moralis from "moralis";
 
 

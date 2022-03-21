@@ -2,7 +2,7 @@ import { useMoralis } from "react-moralis";
 import { getEllipsisTxt } from "../../helpers/formatters";
 import Blockie from "../../Blockie";
 import { Button, Card, Modal } from "antd";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Address from "../Address/Address";
 import { SelectOutlined } from "@ant-design/icons";
 import { getExplorer } from "../../helpers/networks";
@@ -26,90 +26,58 @@ const styles = {
 };
 
 function Wallet() {
-  const { logout, account, chainId } = useMoralis();
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const { authenticate, isAuthenticated, logout, user, chainId, web3 } =
+    useMoralis();
+
+  if (!isAuthenticated) {
+    return (
+      <button
+        className="button connectWallet"
+        style={{ height: "8vh", width: "15%", cursor: "pointer" }}
+        onClick={() =>
+          authenticate({
+            signingMessage: "Welcome to Lucky You",
+            chainId: 80001,
+          })
+        }
+      >
+        <span className="normalText" style={{ fontSize: "26px" }}>
+          Connect Wallet
+        </span>
+      </button>
+    );
+  }
 
   return (
     <>
       <div
+        className="button connectWallet"
         style={{
+          height: "8vh",
+          width: "15%",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
         }}
-        onClick={() => {
-          console.log("Open model");
-          setIsModalVisible(true);
-        }}
       >
-        <p
+        <span style={{ fontWeight: "700", fontSize: "18px" }}>
+          {getEllipsisTxt(user.get("ethAddress"), 6)}
+        </span>
+        <span
           style={{
-            marginRight: "5px",
-            ...styles.text,
-            pointerEvents: "none",
-            color: "white",
-            fontWeight: "500",
-          }}
-        >
-          {getEllipsisTxt(account, 6)}
-        </p>
-        <Blockie currentWallet scale={3} />
-      </div>
-      <Modal
-        visible={isModalVisible}
-        footer={null}
-        onCancel={() => setIsModalVisible(false)}
-        bodyStyle={{
-          padding: "15px",
-          fontSize: "17px",
-          fontWeight: "500",
-        }}
-        style={{ fontSize: "16px", fontWeight: "500" }}
-        width="400px"
-      >
-        Account
-        <Card
-          style={{
-            marginTop: "10px",
-            borderRadius: "1rem",
-          }}
-          bodyStyle={{ padding: "15px" }}
-        >
-          <Address
-            avatar="left"
-            size={6}
-            copyable
-            style={{ fontSize: "20px" }}
-          />
-          <div style={{ marginTop: "10px", padding: "0 10px" }}>
-            <a
-              href={`${getExplorer(chainId)}/address/${account}`}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <SelectOutlined style={{ marginRight: "5px" }} />
-              View on Explorer
-            </a>
-          </div>
-        </Card>
-        <Button
-          size="large"
-          type="primary"
-          style={{
-            width: "100%",
-            marginTop: "10px",
-            borderRadius: "0.5rem",
+            textDecoration: "underline",
             fontSize: "16px",
             fontWeight: "500",
+            cursor: "pointer",
+            color: "blue",
           }}
           onClick={() => {
             logout();
-            setIsModalVisible(false);
           }}
         >
-          Disconnect Wallet
-        </Button>
-      </Modal>
+          Disconnect
+        </span>
+      </div>
     </>
   );
 }

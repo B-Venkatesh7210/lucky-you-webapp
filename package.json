@@ -1,5 +1,6 @@
 {
   "name": "lucky-you-webapp",
+  "type": "module",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -11,7 +12,10 @@
     "antd": "^4.18.9",
     "big-number": "^2.0.0",
     "ethers": "^5.5.4",
+    "file-system": "^2.2.2",
+    "firebase": "^9.6.9",
     "moralis": "^1.5.5",
+    "nft.storage": "^6.0.2",
     "react": "^17.0.2",
     "react-blockies": "^1.4.1",
     "react-dom": "^17.0.2",

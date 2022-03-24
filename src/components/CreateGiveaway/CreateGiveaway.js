@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {useNavigate} from "react-router-dom"
 import EthLogo from "../../img/Ethereum.png";
 import Emoji from "../../img/emoji.png";
 import Navbar from "../Navbar";
@@ -10,6 +11,7 @@ import { message } from "antd";
 
 const CreateGiveaway = () => {
   const { user, isAuthenticated } = useMoralis();
+  let navigate = useNavigate();
   const [formData, setFormData] = useState({
     message: "",
     socialLink: "",
@@ -17,8 +19,10 @@ const CreateGiveaway = () => {
     amount: "",
   });
 
-  const createGiveawayFrontend = async(e) => {
+  const createGiveawayFrontend = async (e) => {
+
     e.preventDefault();
+
     if (!isAuthenticated) {
       alert("Please Connect your Wallet");
       return;
@@ -29,44 +33,42 @@ const CreateGiveaway = () => {
 
     let web3js;
     web3js = new Web3(window.web3.currentProvider);
-
+//
     const contract = new web3js.eth.Contract(
       contractABI,
       config.contractAddress
     );
 
     let _deadline = parseInt(formData.deadline);
-    console.log(_deadline);
-    
+    let actualDeadline = (Math.floor(Date.now()/1000)) + (_deadline * 86400); //86400 se multiply kardena
+    console.log(actualDeadline);
 
     try {
-
       const createGiveawayCall = contract.methods
-        .createGiveaway(
-          formData.message,
-          formData.socialLink,
-          _deadline
-        )
+        .createGiveaway(formData.message, formData.socialLink, actualDeadline)
         .send({
           from: user.get("ethAddress"),
           value: web3js.utils.toWei(formData.amount, "ether"),
         });
 
       createGiveawayCall.on("error", (error) => {
+        //
         console.log(error);
         alert(error);
-
-        
       });
 
-      createGiveawayCall.on("receipt", (receipt) => {
-        console.log(receipt);
+      contract.events.GiveawayCreated({}, function (error, event) {
+        console.log(event);
+        //
+        navigate("/giveaway-details", { state: event.returnValues });
         
+      
       });
-
     } catch (error) {
+//
       alert(error.message);
     }
+
   };
 
   return (
@@ -113,7 +115,7 @@ const CreateGiveaway = () => {
             </span>
             <div className="button2" style={{ height: "4rem", width: "100%" }}>
               <span className="blackText" style={{ fontSize: "28px" }}>
-                0xhhsdjdadfjaiujhda3857
+                {user.get("ethAddress")}
               </span>
             </div>
           </div>
@@ -256,7 +258,7 @@ const CreateGiveaway = () => {
                 }}
               ></input>
               <span
-                className="normalText"
+                className="blackText"
                 style={{ fontSize: "28px", marginRight: "1rem" }}
               >
                 Days

@@ -1,8 +1,13 @@
 import React from "react";
-import EthLogo from "../img/Ethereum.png";
-import Emoji from "../img/emoji.png";
+import EthLogo from "../../img/Ethereum.png";
+import { getEllipsisTxt, n6 } from "../../helpers/formatters";
+import Timer from "../Timer";
 
-const GiveawayDiv = () => {
+const ParticipatedGiveawayDiv = ({typeOfGiveaway}) => {
+
+  const amount = typeOfGiveaway.amount / 10 ** 18;
+  const smallTimer = true;
+
     return (
       <>
         <div
@@ -24,10 +29,11 @@ const GiveawayDiv = () => {
               marginBottom: "1rem",
             }}
           >
-            <span style={{ fontSize: "1.2rem" }}>0xhhsdjdadfjaiujhda3857</span>
+            <span style={{ fontSize: "1.2rem" }}>{getEllipsisTxt(typeOfGiveaway.creator)}</span>
             <span>
-              <span className="blackText" style={{ fontSize: "1.2rem" }}>
-                Time: 1day 23hrs 14min
+              <span className="blackText" style={{ fontSize: "1.2rem", display: "flex", flexDirection: "row", alignItems: "center"}}>
+                <span>Time :</span>
+                <Timer endTime={typeOfGiveaway.deadline} smallTimer={smallTimer}/>
               </span>
             </span>
           </div>
@@ -52,7 +58,7 @@ const GiveawayDiv = () => {
                 className="normalText"
                 style={{ fontSize: "40px", textAlign: "center" }}
               >
-                This is a giveaway for 1 ETH. Subscribe to my channel
+                {typeOfGiveaway.message}
               </span>
               <span
                 className="normalText"
@@ -62,7 +68,7 @@ const GiveawayDiv = () => {
                   textDecoration: "underline",
                 }}
               >
-                https://www.youtube.com/
+                {typeOfGiveaway.socialLink}
               </span>
             </div>
           </div>
@@ -86,7 +92,7 @@ const GiveawayDiv = () => {
                 No. of participants
               </span>
               <span className="normalText" style={{ fontSize: "3rem" }}>
-                12
+                {typeOfGiveaway.participants.length}
               </span>
             </div>
             <div
@@ -101,7 +107,7 @@ const GiveawayDiv = () => {
                 Giveaway Amount
               </span>
               <span className="normalText" style={{ fontSize: "4rem" }}>
-                24{" "}
+                {amount}{" "}
                 <img
                   src={EthLogo}
                   alt="Ethereum Logo"
@@ -117,7 +123,7 @@ const GiveawayDiv = () => {
               }}
             >
               <span className="blackText" style={{ fontSize: "1.2rem" }}>
-                Particpation fee
+                Participation fee
               </span>
               <span className="normalText" style={{ fontSize: "3rem" }}>
                 24
@@ -140,7 +146,7 @@ const GiveawayDiv = () => {
           >
             <button
               className="greenButton"
-              style={{ width: "17rem", height: "4rem" }}
+              style={{ width: "17rem", height: "4rem", background: "#8C8C8C" }}
             >
               <span
                 style={{
@@ -152,12 +158,7 @@ const GiveawayDiv = () => {
                   color: "black",
                 }}
               >
-                Participate
-                <img
-                  src={Emoji}
-                  alt="Emoji"
-                  style={{ width: "18%", marginLeft: "0.5rem" }}
-                ></img>
+                Participated
               </span>
             </button>
           </div>
@@ -166,4 +167,4 @@ const GiveawayDiv = () => {
     );
   };
 
-  export default GiveawayDiv;
+  export default ParticipatedGiveawayDiv;

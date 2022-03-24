@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../Navbar";
-import GiveawayDiv from "../GiveawayDiv";
+import GiveawayDiv from "../TypesOfGiveawayDivs/GiveawayDiv";
 
 const YourNfts = () => {
   return (
@@ -15,7 +15,7 @@ const YourNfts = () => {
         }}
       >
         <Navbar isSticky />
-        <div style={{ height: "10vh" }}></div>
+        <div style={{ height: "20vh" }}></div>
       </div>
     </div>
   );

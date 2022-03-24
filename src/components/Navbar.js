@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import Logo from "../img/LuckyYou Logo.png";
 import YourNftsLogo from "../img/YourNfts.png";
 import YourGiveawaysLogo from "../img/YourGiveaways.png";
-import { Link } from "react-router-dom";
+import WonGiveawaysLogo from "../img/WonGiveaways.png";
+import { NavLink, Link } from "react-router-dom";
 
 const Navbar = ({ isSticky }) => {
   return (
@@ -31,41 +32,56 @@ const Navbar = ({ isSticky }) => {
           alignItems: "center",
           justifyContent: "space-between",
           width: "80%",
+          paddingLeft: "2rem"
         }}
       >
-        <Link to="/home">
+        <NavLink className={(navData) => navData.isActive ? "activeTab" : ""} to="/home">
           <div style={{ width: "10%" }}>
             <img
               alt="Lucky You Logo"
               src={Logo}
-              style={{ width: "8rem", marginLeft: "2rem" }}
+              style={{ width: "8rem" }}
             />
           </div>
-        </Link>
+        </NavLink>
 
         <div
           style={{
-            width: "40%",
+            width: "60%",
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-evenly",
             alignItems: "center",
+            marginTop: "1rem"
           }}
         >
-          <Link to="/your-nfts">
+          <NavLink className={(navData) => navData.isActive ? "activeTab" : ""} to="/won-giveaways">
+          {/* <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}> */}
+          <img
+              alt="Won Giveaways Logo"
+              src={WonGiveawaysLogo}
+              style={{ width: "12rem" }}
+            ></img>
+            {/* <div style={{height: "1rem", width: "4rem", background: "red"}}>
+
+            </div> */}
+          {/* </div> */}
+            
+          </NavLink>
+          <NavLink className={(navData) => navData.isActive ? "activeTab" : ""} to="/your-nfts">
             <img
               alt="Your NFTs Logo"
               src={YourNftsLogo}
               style={{ width: "6.3rem" }}
             ></img>
-          </Link>
-          <Link to="/your-giveaways">
+          </NavLink>
+          <NavLink className={(navData) => navData.isActive ? "activeTab" : ""} to="/your-giveaways">
             <img
               alt="Your Giveaways Logo"
               src={YourGiveawaysLogo}
               style={{ width: "12rem" }}
             ></img>
-          </Link>
+          </NavLink>
         </div>
       </div>
       <Wallet />

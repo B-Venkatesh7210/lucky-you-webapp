@@ -73,6 +73,7 @@ const Test = () => {
         </div> */}
         <div>
           <h2>Create a giveaway</h2>
+          <span>{(Math.floor(Date.now()/1000))}</span>
           <form
             onSubmit={(e) => {
               e.preventDefault();

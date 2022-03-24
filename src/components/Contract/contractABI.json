@@ -1,85 +1,5 @@
 [
 	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_message",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_socialLink",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_deadline",
-				"type": "uint256"
-			}
-		],
-		"name": "createGiveaway",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "giveawayId",
-				"type": "uint256"
-			}
-		],
-		"name": "endGiveaway",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "getRandomNumber",
-		"outputs": [
-			{
-				"internalType": "bytes32",
-				"name": "requestId",
-				"type": "bytes32"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "giveawayId",
-				"type": "uint256"
-			}
-		],
-		"name": "participate",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bytes32",
-				"name": "requestId",
-				"type": "bytes32"
-			},
-			{
-				"internalType": "uint256",
-				"name": "randomness",
-				"type": "uint256"
-			}
-		],
-		"name": "rawFulfillRandomness",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
 		"inputs": [],
 		"stateMutability": "payable",
 		"type": "constructor"
@@ -131,6 +51,12 @@
 			},
 			{
 				"indexed": false,
+				"internalType": "uint256",
+				"name": "participationFee",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
 				"internalType": "address[]",
 				"name": "participants",
 				"type": "address[]"
@@ -146,14 +72,106 @@
 				"internalType": "address",
 				"name": "winner",
 				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "bytes32",
+				"name": "taskId",
+				"type": "bytes32"
 			}
 		],
 		"name": "GiveawayCreated",
 		"type": "event"
 	},
 	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "creator",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "uniqueId",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "bool",
+				"name": "isLive",
+				"type": "bool"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "participationFee",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "winner",
+				"type": "address"
+			}
+		],
+		"name": "GiveawayEnded",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "creator",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "uniqueId",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "bool",
+				"name": "isLive",
+				"type": "bool"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "participationFee",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "address[]",
+				"name": "participants",
+				"type": "address[]"
+			}
+		],
+		"name": "GiveawayParticipated",
+		"type": "event"
+	},
+	{
 		"inputs": [],
-		"name": "contractAddress",
+		"name": "ETH",
 		"outputs": [
 			{
 				"internalType": "address",
@@ -165,6 +183,72 @@
 		"type": "function"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "newAddress",
+				"type": "address"
+			}
+		],
+		"name": "changeOwner",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "giveawayId",
+				"type": "uint256"
+			}
+		],
+		"name": "checker",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "canExec",
+				"type": "bool"
+			},
+			{
+				"internalType": "bytes",
+				"name": "execPayload",
+				"type": "bytes"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_message",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_socialLink",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_deadline",
+				"type": "uint256"
+			}
+		],
+		"name": "createGiveaway",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
 		"inputs": [],
 		"name": "currGiveawayId",
 		"outputs": [
@@ -172,6 +256,32 @@
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "giveawayId",
+				"type": "uint256"
+			}
+		],
+		"name": "endGiveaway",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "gelato",
+		"outputs": [
+			{
+				"internalType": "address payable",
+				"name": "",
+				"type": "address"
 			}
 		],
 		"stateMutability": "view",
@@ -219,6 +329,11 @@
 						"type": "uint256"
 					},
 					{
+						"internalType": "uint256",
+						"name": "participationFee",
+						"type": "uint256"
+					},
+					{
 						"internalType": "address[]",
 						"name": "participants",
 						"type": "address[]"
@@ -232,6 +347,11 @@
 						"internalType": "address",
 						"name": "winner",
 						"type": "address"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "taskId",
+						"type": "bytes32"
 					}
 				],
 				"internalType": "struct LuckyYou.Giveaway[]",
@@ -288,6 +408,244 @@
 		"type": "function"
 	},
 	{
+		"inputs": [],
+		"name": "getParticipatedGiveaways",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "address",
+						"name": "creator",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "uniqueId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "message",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "socialLink",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "deadline",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "participationFee",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address[]",
+						"name": "participants",
+						"type": "address[]"
+					},
+					{
+						"internalType": "bool",
+						"name": "isLive",
+						"type": "bool"
+					},
+					{
+						"internalType": "address",
+						"name": "winner",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "taskId",
+						"type": "bytes32"
+					}
+				],
+				"internalType": "struct LuckyYou.Giveaway[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getTimestamp",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "time",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getWonGiveaways",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "address",
+						"name": "creator",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "uniqueId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "message",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "socialLink",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "deadline",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "participationFee",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address[]",
+						"name": "participants",
+						"type": "address[]"
+					},
+					{
+						"internalType": "bool",
+						"name": "isLive",
+						"type": "bool"
+					},
+					{
+						"internalType": "address",
+						"name": "winner",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "taskId",
+						"type": "bytes32"
+					}
+				],
+				"internalType": "struct LuckyYou.Giveaway[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getYourGiveaways",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "address",
+						"name": "creator",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "uniqueId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "message",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "socialLink",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "deadline",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "participationFee",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address[]",
+						"name": "participants",
+						"type": "address[]"
+					},
+					{
+						"internalType": "bool",
+						"name": "isLive",
+						"type": "bool"
+					},
+					{
+						"internalType": "address",
+						"name": "winner",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "taskId",
+						"type": "bytes32"
+					}
+				],
+				"internalType": "struct LuckyYou.Giveaway[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "uint256",
@@ -333,6 +691,11 @@
 				"type": "uint256"
 			},
 			{
+				"internalType": "uint256",
+				"name": "participationFee",
+				"type": "uint256"
+			},
+			{
 				"internalType": "bool",
 				"name": "isLive",
 				"type": "bool"
@@ -341,6 +704,11 @@
 				"internalType": "address",
 				"name": "winner",
 				"type": "address"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "taskId",
+				"type": "bytes32"
 			}
 		],
 		"stateMutability": "view",
@@ -361,7 +729,7 @@
 	},
 	{
 		"inputs": [],
-		"name": "owner",
+		"name": "ops",
 		"outputs": [
 			{
 				"internalType": "address",
@@ -374,15 +742,60 @@
 	},
 	{
 		"inputs": [],
-		"name": "randomResult",
+		"name": "owner",
 		"outputs": [
 			{
-				"internalType": "uint256",
+				"internalType": "address",
 				"name": "",
-				"type": "uint256"
+				"type": "address"
 			}
 		],
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "giveawayId",
+				"type": "uint256"
+			}
+		],
+		"name": "participate",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bytes32",
+				"name": "requestId",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "uint256",
+				"name": "randomness",
+				"type": "uint256"
+			}
+		],
+		"name": "rawFulfillRandomness",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "rechargeEth",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "unlockContract",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	}
 ]

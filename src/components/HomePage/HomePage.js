@@ -1,11 +1,41 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Logo from "../../img/LuckyYou Logo.png";
 import Navbar from "../Navbar";
-import GreenCircle from "../../img/greenCircle.png";
-import GiveawayDiv from "../GiveawayDiv";
+import GiveawayDiv from "../TypesOfGiveawayDivs/GiveawayDiv";
 import { Link } from "react-router-dom";
+import config from "../config/config";
+import contractABI from "../Contract/contractABI.json";
+import Web3 from "web3";
+import { useMoralis } from "react-moralis";
 
 const HomePage = () => {
+  const [liveGiveaways, setLiveGiveaways] = useState([]);
+  const { isAuthenticated } = useMoralis();
+
+  const getAllGiveaways = async () => {
+    let web3js;
+    web3js = new Web3(window.web3.currentProvider);
+
+    const contract = new web3js.eth.Contract(
+      contractABI,
+      config.contractAddress
+    );
+
+    try {
+      const allGiveaways = await contract.methods.getAllGiveaways().call();
+      setLiveGiveaways(allGiveaways);
+      console.log(allGiveaways);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      getAllGiveaways();
+    }
+  }, [isAuthenticated]);
+
   return (
     <div className="mainBg2">
       <div
@@ -18,6 +48,7 @@ const HomePage = () => {
         }}
       >
         <Navbar isSticky />
+        <div style={{ height: "5vh" }}></div>
         <div
           style={{
             display: "flex",
@@ -70,10 +101,13 @@ const HomePage = () => {
           <div
             className="greenCircle"
             style={{ width: "2rem", height: "2rem", marginRight: "2rem" }}
-          ></div>
+          >
+          </div>
           <span>Live Giveaways</span>
         </span>
-        {<GiveawayDiv />}
+        {liveGiveaways.map((liveGiveaway) => (
+          <GiveawayDiv typeOfGiveaway={liveGiveaway} />
+        ))}
       </div>
     </div>
   );

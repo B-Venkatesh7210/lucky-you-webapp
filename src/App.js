@@ -12,16 +12,13 @@ import Error from "./components/Error";
 import ParticipatedGiveaways from "./components/ParticipatedGiveaways/ParticipatedGiveaways";
 import YourGiveaways from "./components/YourGiveaways/YourGiveways";
 import YourNfts from "./components/YourNfts/YourNfts";
+import WonGiveaways from "./components/WonGiveaways/WonGiveaways";
+import GiveawayDetails from "./components/GiveawayDetails/GiveawayDetails";
+import Timer from "./components/Timer";
 
 function App() {
   return (
     <div>
-      {/* <LandingPage/> */}
-      {/* <Test/> */}
-      {/* <HomePage/> */}
-      {/* <CreateGiveaway/> */}
-      {/* <Navbar/> */}
-      {/* <Error/> */}
       <Routes>
         <Route exact path="/" element={<LandingPage />}></Route>
         <Route exact path="/home" element={<HomePage />}></Route>
@@ -37,10 +34,14 @@ function App() {
         ></Route>
         <Route exact path="/your-giveaways" element={<YourGiveaways />}></Route>
         <Route exact path="/your-nfts" element={<YourNfts />}></Route>
+        <Route exact path="/won-giveaways" element={<WonGiveaways />}></Route>
+        <Route exact path="/giveaway-details" element={<GiveawayDetails />}></Route>
 
         <Route path="*" element={<Error />}></Route>
       </Routes>
+      {/* <Test/> */}
     </div>
+
   );
 }
 

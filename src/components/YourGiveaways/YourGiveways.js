@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../Navbar";
-import GiveawayDiv from "../GiveawayDiv";
+import GiveawayDiv from "../TypesOfGiveawayDivs/GiveawayDiv";
 
 const YourGiveaways = () => {
   return (
@@ -15,7 +15,7 @@ const YourGiveaways = () => {
         }}
       >
         <Navbar isSticky />
-        <div style={{height: "10vh"}}>
+        <div style={{height: "20vh"}}>
 
         </div>
         {<GiveawayDiv />}

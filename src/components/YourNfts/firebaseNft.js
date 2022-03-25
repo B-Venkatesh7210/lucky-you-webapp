@@ -2,19 +2,27 @@ import db from "../../../firebaseInit.js";
 import firebase from "firebase";
 import { useMoralis } from "react-moralis";
 import html2canvas from "html2canvas";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import nftABI from "nftAbi.json";
 import config from "../config/config.js";
 import { NFTStorage, File } from "nft.storage";
+import SingleNft from "./SingleNft.js";
+import { useLocation } from "react-router-dom";
 
 const client = new NFTStorage({
   token:
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweGFDQmEwMDVCYTM5YTVhMzEwQzVCNDk5RTQ1NWNGNkY4QzJmMjA0YjAiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY0ODA5MjU4NDY5MCwibmFtZSI6Ikx1Y2t5WW91In0.Fl1UK3_0oJl0N1q8EFLS4mf-dPbtw8bresyBoVyeJwo",
 });
 
-const NftMinting = ({ typeOfGiveaway }) => {
+const NftMinting = () => {
   const { account, web3 } = useMoralis();
   const printRef = React.useRef();
+  const [typeOfGiveaway, setTypeOfGiveaway] = useState();
+  let location = useLocation();
+
+  useEffect(() => {
+    setTypeOfGiveaway(location.state.typeofGiveaway);
+  }, []);
 
   const handleDownloadImage = async () => {
     const element = printRef.current;
@@ -92,6 +100,8 @@ const NftMinting = ({ typeOfGiveaway }) => {
       }
     });
   };
+
+  <SingleNft typeOfGiveaway={typeOfGiveaway} />;
 };
 
 export default NftMinting;

@@ -10,7 +10,7 @@ import contractABI from "../Contract/contractABI.json";
 import Timer from "../Timer";
 import { Link } from "react-router-dom";
 
-const GiveawayDiv = ({ typeOfGiveaway }) => {
+const GiveawayDiv = ({ typeOfGiveaway}) => {
   var newArray = [];
   const [participants, setParticipants] = useState([]);
   const navigate = useNavigate();

@@ -1,10 +1,12 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../Navbar";
 import SingleNft from "./SingleNft";
 
 const NftPage = () => {
   let location = useLocation();
+  const navigate = useNavigate();
+
   return (
     <div className="mainBg2">
       <div
@@ -30,12 +32,15 @@ const NftPage = () => {
           <button
             className="greenButton"
             style={{ width: "17rem", height: "5rem" }}
+            onClick={navigate("/nft-minting", {
+              state: location.state.typeofGiveaway,
+            })}
           >
             <span
               style={{
                 justifyContent: "space-around",
                 fontFamily: "Hand Drawn Shapes",
-                fontSize: "32px"
+                fontSize: "32px",
               }}
             >
               Mint Your NFT

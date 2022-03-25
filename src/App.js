@@ -15,6 +15,8 @@ import YourNfts from "./components/YourNfts/YourNfts";
 import WonGiveaways from "./components/WonGiveaways/WonGiveaways";
 import GiveawayDetails from "./components/GiveawayDetails/GiveawayDetails";
 import Timer from "./components/Timer";
+import SingleNft from "./components/YourNfts/SingleNft";
+import NftPage from "./components/YourNfts/NftPage";
 
 function App() {
   return (
@@ -36,10 +38,12 @@ function App() {
         <Route exact path="/your-nfts" element={<YourNfts />}></Route>
         <Route exact path="/won-giveaways" element={<WonGiveaways />}></Route>
         <Route exact path="/giveaway-details" element={<GiveawayDetails />}></Route>
+        <Route exact path="/nft-details" element={<NftPage/>} ></Route> 
 
         <Route path="*" element={<Error />}></Route>
       </Routes>
       {/* <Test/> */}
+      {/* <NftPage/> */}
     </div>
 
   );

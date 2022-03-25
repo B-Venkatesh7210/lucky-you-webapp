@@ -8,6 +8,7 @@ import config from "../config/config";
 import { useNavigate } from "react-router-dom";
 import contractABI from "../Contract/contractABI.json";
 import Timer from "../Timer";
+import { Link } from "react-router-dom";
 
 const GiveawayDiv = ({ typeOfGiveaway }) => {
   var newArray = [];
@@ -228,6 +229,7 @@ const GiveawayDiv = ({ typeOfGiveaway }) => {
                   width: "17rem",
                   height: "4rem",
                   background: "#8C8C8C",
+                  cursor: "auto",
                 }}
               >
                 <span
@@ -315,29 +317,39 @@ const GiveawayDiv = ({ typeOfGiveaway }) => {
                 </span>
               </button>
               <div>
-                <button
-                  className="greenButton"
-                  style={{ width: "17rem", height: "5rem" }}
-                >
-                  <span
-                    style={{
-                      display: "flex",
-                      flexDirection: "row",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      fontFamily: "Hand Drawn Shapes",
-                      fontSize: "32px",
-                      color: "black",
+              
+                  <button
+                    className="greenButton"
+                    style={{ width: "17rem", height: "5rem" }}
+                    onClick={() => {
+                      navigate("/nft-details", {state: typeOfGiveaway})
                     }}
                   >
-                    Your NFT
-                    <img
-                      src={Emoji}
-                      alt="Emoji"
-                      style={{ width: "18%", marginLeft: "0.5rem" }}
-                    ></img>
-                  </span>
-                </button>
+                    <span
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        fontFamily: "Hand Drawn Shapes",
+                        fontSize: "32px",
+                        color: "black",
+                      }}
+                    >
+                      {typeOfGiveaway.winner.toLowerCase() ===
+                      user.get("ethAddress").toLowerCase() ? (
+                        <span>Your NFT</span>
+                      ) : (
+                        <span>Their NFT</span>
+                      )}
+                      <img
+                        src={Emoji}
+                        alt="Emoji"
+                        style={{ width: "18%", marginLeft: "0.5rem" }}
+                      ></img>
+                    </span>
+                  </button>
+                
               </div>
             </div>
           )}

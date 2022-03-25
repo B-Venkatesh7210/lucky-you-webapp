@@ -67,11 +67,18 @@ code {
   color: black;
 }
 
-.normalText{
+.normalText {
   font-family: Hand Drawn Shapes;
   color: black;
 }
 
+.nftWhite {
+  font-family: Guava Candy;
+  color: white;
+  font-weight: 500;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: black;
+}
 
 .button {
   background: var(--clr-yellow-2);
@@ -90,4 +97,18 @@ code {
   border-radius: 20px;
   padding: 10px;
   cursor: pointer;
+}
+
+.singleNft {
+  background: linear-gradient(
+    89.67deg,
+    #111f3e 25.46%,
+    rgba(0, 86, 224, 0.91) 99.69%
+  );
+  border: 5px solid #1b1a17;
+  box-shadow: -10px -10px 40px 10px rgba(255, 227, 56, 0.75),
+    10px 10px 40px 10px rgba(255, 227, 56, 0.75);
+  border-radius: 40px;
+  transform: scale(0.7)
+
 }

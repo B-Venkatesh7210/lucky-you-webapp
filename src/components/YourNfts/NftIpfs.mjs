@@ -9,7 +9,7 @@ const client = new NFTStorage({
 
 async function main() {
   let file = new File(
-    [fs.readFileSync("../../img/Ethereum.png")],
+    [fs.readFileSync("D:/lucky-you-webapp/src/img/Ethereum.png")],
     "LuckyYou-Logo.jpg",
     {
       type: "image/png",

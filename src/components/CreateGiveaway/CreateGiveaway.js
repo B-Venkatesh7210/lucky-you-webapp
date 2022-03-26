@@ -7,7 +7,7 @@ import { useMoralis } from "react-moralis";
 import Web3 from "web3";
 import config from "../config/config";
 import contractABI from "../Contract/contractABI.json";
-import { message } from "antd";
+
 
 const CreateGiveaway = () => {
   const { user, isAuthenticated } = useMoralis();

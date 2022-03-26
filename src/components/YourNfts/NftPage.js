@@ -28,7 +28,7 @@ const NftPage = () => {
             alignItems: "center",
           }}
         >
-          <SingleNft typeOfGiveaway={location.state.typeOfGiveaway} />
+          <SingleNft typeOfGiveaway={location.state} />
           <button
             className="greenButton"
             style={{ width: "17rem", height: "5rem" }}

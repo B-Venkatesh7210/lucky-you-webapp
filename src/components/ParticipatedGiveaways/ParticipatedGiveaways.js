@@ -62,8 +62,12 @@ const ParticipatedGiveaways = () => {
         >
           <span>Participated Giveaways</span>
         </span>
-        {/* {<ParticipatedGiveawayDiv />} */}
-        {participatedGiveaways.map((participatedGiveaway) => (<GiveawayDiv typeOfGiveaway={participatedGiveaway}/>))}
+        {participatedGiveaways.length===0 ? (<span className="whiteText"
+          style={{
+            fontSize: "40px",
+            marginTop: "6rem",
+          }}> You've not participated in any giveaway.</span>) :
+          participatedGiveaways.map((participatedGiveaway) => (<GiveawayDiv typeOfGiveaway={participatedGiveaway}/>))}
       </div>
     </div>
   );

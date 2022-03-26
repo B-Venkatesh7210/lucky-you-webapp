@@ -8,7 +8,6 @@ import config from "../config/config";
 import { useNavigate } from "react-router-dom";
 import contractABI from "../Contract/contractABI.json";
 import Timer from "../Timer";
-import { Link } from "react-router-dom";
 
 const GiveawayDiv = ({ typeOfGiveaway}) => {
   var newArray = [];
@@ -62,267 +61,270 @@ const GiveawayDiv = ({ typeOfGiveaway}) => {
     console.log(user.get("ethAddress"));
 
     for (var i = 0; i < typeOfGiveaway.participants.length; i++) {
-      newArray[i] = typeOfGiveaway.participants[i].toLowerCase();
+      if (typeOfGiveaway.participants[i])
+        newArray[i] = typeOfGiveaway.participants[i].toLowerCase();
     }
     setParticipants(newArray);
     console.log(newArray);
   }, []);
 
-  return (
-    <>
-      <div
-        className="giveAwayDiv"
-        style={{
-          height: "100%",
-          width: "55%",
-          marginTop: "3rem",
-          padding: "1rem",
-        }}
-      >
+  return user ? (
+    user.get("ethAddress") ? (
+      <>
         <div
-          className="blackText"
+          className="giveAwayDiv"
           style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "space-between",
-            marginBottom: "1rem",
-          }}
-        >
-          <span style={{ fontSize: "1.2rem" }}>
-            Creator : {getEllipsisTxt(typeOfGiveaway.creator)}
-          </span>
-          <span>
-            <span
-              className="blackText"
-              style={{
-                fontSize: "1.2rem",
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-              }}
-            >
-              <span>Time :</span>
-              {typeOfGiveaway.isLive ? (
-                <Timer
-                  endTime={typeOfGiveaway.deadline}
-                  smallTimer={smallTimer}
-                />
-              ) : (
-                <span style={{ marginLeft: "10px" }}>Giveaway has ended</span>
-              )}
-            </span>
-          </span>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            marginBottom: "1rem",
+            height: "100%",
+            width: "55%",
+            marginTop: "3rem",
+            padding: "1rem",
           }}
         >
           <div
+            className="blackText"
             style={{
               display: "flex",
-              flexDirection: "column",
+              flexDirection: "row",
               alignItems: "center",
-              width: "70%",
+              justifyContent: "space-between",
+              marginBottom: "1rem",
             }}
           >
-            <span
-              className="normalText"
-              style={{ fontSize: "40px", textAlign: "center" }}
-            >
-              {typeOfGiveaway.message}
+            <span style={{ fontSize: "1.2rem" }}>
+              Creator : {getEllipsisTxt(typeOfGiveaway.creator)}
             </span>
-            <span
-              className="normalText"
-              style={{
-                fontSize: "30px",
-                color: "blue",
-                textDecoration: "underline",
-              }}
-            >
-              {typeOfGiveaway.socialLink}
-            </span>
-          </div>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "space-between",
-            marginBottom: "1rem",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              textAlign: "center",
-            }}
-          >
-            <span className="blackText" style={{ fontSize: "1.2rem" }}>
-              No. of participants
-            </span>
-            <span className="normalText" style={{ fontSize: "3rem" }}>
-              {typeOfGiveaway.participants.length}
-            </span>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              textAlign: "center",
-              marginRight: "1rem",
-            }}
-          >
-            <span className="blackText" style={{ fontSize: "1.2rem" }}>
-              Giveaway Amount
-            </span>
-            <span className="normalText" style={{ fontSize: "4rem" }}>
-              {amount}{" "}
-              <img
-                src={EthLogo}
-                alt="Ethereum Logo"
-                style={{ width: "2rem" }}
-              ></img>
-            </span>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              textAlign: "center",
-            }}
-          >
-            <span className="blackText" style={{ fontSize: "1.2rem" }}>
-              Participation fee
-            </span>
-            <span className="normalText" style={{ fontSize: "3rem" }}>
-              {participationFee}
-              <img
-                src={EthLogo}
-                alt="Ethereum Logo"
-                style={{ width: "1.2rem", marginLeft: "1rem" }}
-              ></img>
-            </span>
-          </div>
-        </div>
-
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          {typeOfGiveaway.isLive ? (
-            participants.includes(user.get("ethAddress").toLowerCase()) ? (
-              <button
-                className="greenButton"
+            <span>
+              <span
+                className="blackText"
                 style={{
-                  width: "17rem",
-                  height: "4rem",
-                  background: "#8C8C8C",
-                  cursor: "auto",
+                  fontSize: "1.2rem",
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
                 }}
               >
-                <span
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    fontFamily: "Hand Drawn Shapes",
-                    fontSize: "32px",
-                    color: "black",
-                  }}
-                >
-                  Participated
-                </span>
-              </button>
-            ) : (
-              <button
-                className="greenButton"
-                style={{ width: "17rem", height: "4rem" }}
-                onClick={participateGiveaway}
-              >
-                <span
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    fontFamily: "Hand Drawn Shapes",
-                    fontSize: "32px",
-                    color: "black",
-                  }}
-                >
-                  Participate
-                  <img
-                    src={Emoji}
-                    alt="Emoji"
-                    style={{ width: "18%", marginLeft: "0.5rem" }}
-                  ></img>
-                </span>
-              </button>
-            )
-          ) : (
+                <span>Time :</span>
+                {typeOfGiveaway.isLive ? (
+                  <Timer
+                    endTime={typeOfGiveaway.deadline}
+                    smallTimer={smallTimer}
+                  />
+                ) : (
+                  <span style={{ marginLeft: "10px" }}>Giveaway has ended</span>
+                )}
+              </span>
+            </span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              marginBottom: "1rem",
+            }}
+          >
             <div
               style={{
                 display: "flex",
-                flexDirection: "row",
+                flexDirection: "column",
                 alignItems: "center",
-                width: "80%",
-                justifyContent: "space-evenly",
+                width: "70%",
               }}
             >
-              <button
-                className="greenButton"
-                style={{ width: "17rem", height: "5rem" }}
+              <span
+                className="normalText"
+                style={{ fontSize: "40px", textAlign: "center" }}
               >
-                <span
+                {typeOfGiveaway.message}
+              </span>
+              <span
+                className="normalText"
+                style={{
+                  fontSize: "30px",
+                  color: "blue",
+                  textDecoration: "underline",
+                }}
+              >
+                {typeOfGiveaway.socialLink}
+              </span>
+            </div>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+              marginBottom: "1rem",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                textAlign: "center",
+              }}
+            >
+              <span className="blackText" style={{ fontSize: "1.2rem" }}>
+                No. of participants
+              </span>
+              <span className="normalText" style={{ fontSize: "3rem" }}>
+                {typeOfGiveaway.participants.length}
+              </span>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                textAlign: "center",
+                marginRight: "1rem",
+              }}
+            >
+              <span className="blackText" style={{ fontSize: "1.2rem" }}>
+                Giveaway Amount
+              </span>
+              <span className="normalText" style={{ fontSize: "4rem" }}>
+                {amount}{" "}
+                <img
+                  src={EthLogo}
+                  alt="Ethereum Logo"
+                  style={{ width: "2rem" }}
+                ></img>
+              </span>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                textAlign: "center",
+              }}
+            >
+              <span className="blackText" style={{ fontSize: "1.2rem" }}>
+                Participation fee
+              </span>
+              <span className="normalText" style={{ fontSize: "3rem" }}>
+                {participationFee}
+                <img
+                  src={EthLogo}
+                  alt="Ethereum Logo"
+                  style={{ width: "1.2rem", marginLeft: "1rem" }}
+                ></img>
+              </span>
+            </div>
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            {typeOfGiveaway.isLive ? (
+              participants.includes(
+                user.get("ethAddress") && user.get("ethAddress").toLowerCase()
+              ) ? (
+                <button
+                  className="greenButton"
                   style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "space-around",
-                    fontFamily: "Hand Drawn Shapes",
+                    width: "17rem",
+                    height: "4rem",
+                    background: "#8C8C8C",
+                    cursor: "auto",
                   }}
                 >
                   <span
                     style={{
                       display: "flex",
-                      flexDirection: "row",
                       justifyContent: "center",
                       alignItems: "center",
-
-                      fontSize: "24px",
+                      fontFamily: "Hand Drawn Shapes",
+                      fontSize: "32px",
                       color: "black",
                     }}
                   >
-                    Winner
+                    Participated
+                  </span>
+                </button>
+              ) : (
+                <button
+                  className="greenButton"
+                  style={{ width: "17rem", height: "4rem" }}
+                  onClick={participateGiveaway}
+                >
+                  <span
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      fontFamily: "Hand Drawn Shapes",
+                      fontSize: "32px",
+                      color: "black",
+                    }}
+                  >
+                    Participate
                     <img
                       src={Emoji}
                       alt="Emoji"
-                      style={{ width: "12%", marginLeft: "0.5rem" }}
+                      style={{ width: "18%", marginLeft: "0.5rem" }}
                     ></img>
                   </span>
-                  <span style={{ fontSize: "28px" }}>
-                    {getEllipsisTxt(typeOfGiveaway.winner)}
+                </button>
+              )
+            ) : (
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  width: "80%",
+                  justifyContent: "space-evenly",
+                }}
+              >
+                <button
+                  className="greenButton"
+                  style={{ width: "17rem", height: "5rem" }}
+                >
+                  <span
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      justifyContent: "space-around",
+                      fontFamily: "Hand Drawn Shapes",
+                    }}
+                  >
+                    <span
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "center",
+                        alignItems: "center",
+
+                        fontSize: "24px",
+                        color: "black",
+                      }}
+                    >
+                      Winner
+                      <img
+                        src={Emoji}
+                        alt="Emoji"
+                        style={{ width: "12%", marginLeft: "0.5rem" }}
+                      ></img>
+                    </span>
+                    <span style={{ fontSize: "28px" }}>
+                      {getEllipsisTxt(typeOfGiveaway.winner)}
+                    </span>
                   </span>
-                </span>
-              </button>
-              <div>
-              
+                </button>
+                <div>
                   <button
                     className="greenButton"
                     style={{ width: "17rem", height: "5rem" }}
                     onClick={() => {
-                      navigate("/nft-details", {state: typeOfGiveaway})
+                      navigate("/nft-details", { state: typeOfGiveaway });
                     }}
                   >
                     <span
@@ -349,13 +351,17 @@ const GiveawayDiv = ({ typeOfGiveaway}) => {
                       ></img>
                     </span>
                   </button>
-                
+                </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
-      </div>
-    </>
+      </>
+    ) : (
+      <></>
+    )
+  ) : (
+    <></>
   );
 };
 

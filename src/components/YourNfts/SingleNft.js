@@ -3,9 +3,12 @@ import LuckyYouLogo from "../../img/LuckyYou Logo.png";
 import EthLogo from "../../img/Ethereum.png";
 import GiveawayDiv from "../TypesOfGiveawayDivs/GiveawayDiv";
 import moment from "moment";
+import { getEllipsisTxt } from "../../helpers/formatters";
 
 const SingleNft = ({ typeOfGiveaway }) => {
-  const deadline = new Date(typeOfGiveaway.deadline);
+  const deadline = new Date(typeOfGiveaway.deadline * 1000);
+  const amount = typeOfGiveaway.amount / 10 ** 18;
+  console.log(deadline);
   return (
     <div
       className="singleNft"
@@ -32,7 +35,7 @@ const SingleNft = ({ typeOfGiveaway }) => {
           Creator:
         </span>
         <span className="nftWhite" style={{ fontSize: "50px" }}>
-          {typeOfGiveaway.creator}
+          {getEllipsisTxt(typeOfGiveaway.creator)}
         </span>
       </div>
       <div
@@ -49,14 +52,14 @@ const SingleNft = ({ typeOfGiveaway }) => {
           style={{ width: "20rem" }}
         ></img>
         <span className="nftWhite" style={{ fontSize: "50px" }}>
-          {typeOfGiveaway.winner}
+          {getEllipsisTxt(typeOfGiveaway.winner)}
         </span>
         <div
           style={{
             display: "flex",
             flexDirection: "row",
             alignItems: "center",
-            justifyContent: "space-between",
+            justifyContent: "center",
             width: "60%",
           }}
         >
@@ -64,12 +67,12 @@ const SingleNft = ({ typeOfGiveaway }) => {
             className="nftWhite"
             style={{ color: "#FFE338", fontSize: "120px" }}
           >
-            {typeOfGiveaway.amount}
+            {amount}
           </span>
           <img
             alt="Ethereum Logo"
             src={EthLogo}
-            style={{ width: "4rem" }}
+            style={{ width: "4rem", marginLeft: "1rem" }}
           ></img>
         </div>
       </div>

@@ -28,12 +28,12 @@ const NftPage = () => {
             alignItems: "center",
           }}
         >
-          <SingleNft />
+          <SingleNft typeOfGiveaway={location.state.typeOfGiveaway} />
           <button
             className="greenButton"
             style={{ width: "17rem", height: "5rem" }}
             onClick={navigate("/nft-minting", {
-              state: location.state.typeofGiveaway,
+              state: location.state.typeOfGiveaway,
             })}
           >
             <span

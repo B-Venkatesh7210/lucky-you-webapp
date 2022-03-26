@@ -1,13 +1,13 @@
-import db from "../../../firebaseInit.js";
+import db from "../../firebaseInit";
 import firebase from "firebase";
 import { useMoralis } from "react-moralis";
 import html2canvas from "html2canvas";
 import React, { useEffect, useState } from "react";
-import nftABI from "nftAbi.json";
+import nftABI from "./nftAbi.json";
 import config from "../config/config.js";
 import { NFTStorage, File } from "nft.storage";
-import SingleNft from "./SingleNft.js";
 import { useLocation } from "react-router-dom";
+import NftPage from "./NftPage.js";
 
 const client = new NFTStorage({
   token:
@@ -21,7 +21,7 @@ const NftMinting = () => {
   let location = useLocation();
 
   useEffect(() => {
-    setTypeOfGiveaway(location.state.typeofGiveaway);
+    setTypeOfGiveaway(location.state.typeOfGiveaway);
   }, []);
 
   const handleDownloadImage = async () => {
@@ -101,7 +101,7 @@ const NftMinting = () => {
     });
   };
 
-  <SingleNft typeOfGiveaway={typeOfGiveaway} />;
+  <NftPage typeOfGiveaway={typeOfGiveaway} />;
 };
 
 export default NftMinting;

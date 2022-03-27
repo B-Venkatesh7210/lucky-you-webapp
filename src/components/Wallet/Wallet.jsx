@@ -33,7 +33,7 @@ function Wallet() {
     return (
       <button
         className="button tapButton"
-        style={{ height: "8vh", width: "15%", cursor: "pointer", marginRight: "3rem" }}
+        style={{ height: "8vh", width: "15%", cursor: "pointer", marginRight: "3rem", display: "flex", flexDirection: "column", alignItems: "center"}}
         onClick={() =>
           authenticate({
             signingMessage: "Welcome to Lucky You",
@@ -44,6 +44,10 @@ function Wallet() {
         <span className="normalText" style={{ fontSize: "26px" }}>
           Connect Wallet
         </span>
+        <span className="normalText" style={{ fontSize: "14px" }}>
+          (Polygon Mainnet Only)
+        </span>
+
       </button>
     );
   }

@@ -103,6 +103,11 @@ const GiveawayDiv = ({ typeOfGiveaway }) => {
             width: "55%",
             marginTop: "3rem",
             padding: "1rem",
+            cursor: "pointer",
+          }}
+          onClick={(e) => {
+            e.stopPropagation();
+            navigate("/giveaway-details", { state: typeOfGiveaway });
           }}
         >
           <div
@@ -290,7 +295,10 @@ const GiveawayDiv = ({ typeOfGiveaway }) => {
                 <button
                   className="greenButton tapButton"
                   style={{ width: "17rem", height: "4rem" }}
-                  onClick={participateGiveaway}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    participateGiveaway();
+                  }}
                 >
                   <span
                     style={{
@@ -400,7 +408,7 @@ const GiveawayDiv = ({ typeOfGiveaway }) => {
                   <button
                     className="greenButton tapButton2"
                     style={{ width: "17rem", height: "5rem" }}
-                    onClick={() => {
+                    onClick={(e) => {e.stopPropagation();
                       navigate("/nft-details", { state: typeOfGiveaway });
                     }}
                   >

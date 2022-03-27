@@ -15,6 +15,8 @@ const SingleNft = ({ typeOfGiveaway }) => {
     return Math.floor(Math.random() * 7) + 1;
   };
 
+ 
+
   return (
     <div
       className={`singleNft singleNft${nftRandBg()}`}

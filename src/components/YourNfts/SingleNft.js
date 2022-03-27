@@ -25,7 +25,6 @@ const SingleNft = ({ typeOfGiveaway }) => {
         flexDirection: "column",
         justifyContent: "space-between",
         alignItems: "center",
-        padding: "2rem",
       }}
     >
       <div

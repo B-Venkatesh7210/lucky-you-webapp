@@ -1,6 +1,6 @@
 const config = {
-  contractAddress: "0x65038891d579052Bbe8Ce0a928f78c01b9CDc2B6",
-  nftContractAddress: "0x8278A5eDFa8b23c96dd1b1c550EE7e25DB154AF8",
+  contractAddress: "0x67807eE2C8fa3D37Ec203e156d4C15E8758Cb052",
+  nftContractAddress: "0x9ceA6009266EFAE0E8b81D5E1e528a77F410eD8f",
 };
 
 export default config;

@@ -14,7 +14,7 @@ import JustMintedNftPage from "./justMintedNftPage";
 
 const client = new NFTStorage({
   token:
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweGFDQmEwMDVCYTM5YTVhMzEwQzVCNDk5RTQ1NWNGNkY4QzJmMjA0YjAiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY0ODA5MjU4NDY5MCwibmFtZSI6Ikx1Y2t5WW91In0.Fl1UK3_0oJl0N1q8EFLS4mf-dPbtw8bresyBoVyeJwo",
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweGFDQmEwMDVCYTM5YTVhMzEwQzVCNDk5RTQ1NWNGNkY4QzJmMjA0YjAiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY0ODM5MjEyNjMxMSwibmFtZSI6Ikx1Y2t5WW91RnJlc2gifQ.jli5TJWUJ5saGA-_nsLOMTz64yj6qzMcKnIDVPKZar8",
 });
 
 const NftPage = () => {
@@ -30,14 +30,18 @@ const NftPage = () => {
     const contract = new web3.eth.Contract(nftABI, config.nftContractAddress);
 
     const createCall = await contract.methods.getNftMinted(uniqueId).call();
+    setIsMinted(createCall);
     console.log(createCall);
-    return createCall;
   };
 
   useEffect(() => {
     setTypeOfGiveaway(location.state);
     console.log(location.state);
-    setIsMinted(getNftMinted(location.state.uniqueId));
+    getNftMinted(location.state.uniqueId);
+    console.log(
+      location.state.winner.toLowerCase() ===
+        user.get("ethAddress").toLowerCase()
+    );
   }, []);
 
   const handleDownloadImage = async () => {
@@ -93,7 +97,7 @@ const NftPage = () => {
                     description: typeOfGiveaway.message,
                     image: url,
                     amount: typeOfGiveaway.amount,
-                    winner: typeOfGiveaway.winner,
+                    winner: typeOfGiveaway.winner.toLowerCase(),
                     creator: typeOfGiveaway.creator,
                     particpants: typeOfGiveaway.participants,
                     deadline: typeOfGiveaway.deadline,
@@ -121,10 +125,11 @@ const NftPage = () => {
     });
   };
 
-  return typeOfGiveaway ? (
-    typeOfGiveaway.winner == user.get("ethAddress") ? (
+  return location.state ? (
+    location.state.winner.toLowerCase() ===
+    user.get("ethAddress").toLowerCase() ? (
       isMinted ? (
-        <JustMintedNftPage typeOfGiveaway={typeOfGiveaway} />
+        <JustMintedNftPage typeOfGiveaway={typeOfGiveaway} type={1} />
       ) : (
         <div className="mainBg2">
           <div
@@ -169,7 +174,7 @@ const NftPage = () => {
         </div>
       )
     ) : (
-      <JustMintedNftPage typeOfGiveaway={typeOfGiveaway} />
+      <JustMintedNftPage typeOfGiveaway={typeOfGiveaway} type={2} />
     )
   ) : (
     <div>loading</div>

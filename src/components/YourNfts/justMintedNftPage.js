@@ -1,36 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../Navbar";
-import SingleNft from "./SingleNft";
 import db from "../../firebaseInit";
-import firebase from "firebase";
-import Web3 from "web3";
-import { useMoralis } from "react-moralis";
-import html2canvas from "html2canvas";
-import nftABI from "./nftAbi.json";
-import config from "../config/config.js";
-import { NFTStorage, File } from "nft.storage";
 
-const JustMintedNftPage = ({ typeOfGiveaway }) => {
+
+const JustMintedNftPage = ({ typeOfGiveaway, type }) => {
   const printRef = React.useRef();
   let location = useLocation();
   const [firebaseData, setfirebaseData] = useState();
   const [giveAway, setGiveAway] = useState(typeOfGiveaway);
-// user.ethAddress == +
+  const [loading, setLoading] = useState(true);
+  // user.ethAddress == +
   const getData = async () => {
     const data = await db
       .collection("nfts")
       .doc(location.state ? location.state.uniqueId : typeOfGiveaway.uniqueId)
       .get();
     setfirebaseData(data.data());
+    setLoading(false);
+
     console.log(data.data());
   };
   useEffect(() => {
+    setLoading(true);
+    console.log(type);
     location.state ? setGiveAway(location.state) : setGiveAway(typeOfGiveaway);
     getData();
   }, []);
 
-  return (
+  return loading ? (
+    <div>Loading</div>
+  ) : (
     <div className="mainBg2">
       <div
         style={{
@@ -57,7 +57,6 @@ const JustMintedNftPage = ({ typeOfGiveaway }) => {
           </div>
           <div className="metaDataDiv">
             <span>Creator : {`${giveAway.creator} `}</span>
-            <span>Owner: {`${giveAway.owner} `}</span>
           </div>
         </div>
       </div>

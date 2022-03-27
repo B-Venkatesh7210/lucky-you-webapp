@@ -110,7 +110,6 @@ code {
   box-shadow: -10px -10px 40px 10px rgba(255, 227, 56, 0.75),
     10px 10px 40px 10px rgba(255, 227, 56, 0.75);
   border-radius: 40px;
-  transform: scale(0.7);
 }
 
 .tapButton {

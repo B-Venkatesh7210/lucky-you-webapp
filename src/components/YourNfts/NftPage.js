@@ -18,14 +18,25 @@ const client = new NFTStorage({
 
 const NftPage = () => {
   const navigate = useNavigate();
-
-  const { account } = useMoralis();
+  const [isMinted, setIsMinted] = useState(false);
+  const { account, user } = useMoralis();
   const printRef = React.useRef();
   const [typeOfGiveaway, setTypeOfGiveaway] = useState();
   let location = useLocation();
 
+  const getNftMinted = async (uniqueId) => {
+    let web3 = new Web3(window.web3.currentProvider);
+    const contract = new web3.eth.Contract(nftABI, config.nftContractAddress);
+
+    const createCall = await contract.methods.getNftMinted(uniqueId).call();
+    console.log(createCall);
+    return createCall;
+  };
+
   useEffect(() => {
-    setTypeOfGiveaway(location.state.typeOfGiveaway);
+    setTypeOfGiveaway(location.state);
+    console.log(location.state);
+    setIsMinted(getNftMinted(location.state.uniqueId));
   }, []);
 
   const handleDownloadImage = async () => {
@@ -57,7 +68,7 @@ const NftPage = () => {
         const createCall = contract.methods
           .createToken(metadata.url, typeOfGiveaway.uniqueId)
           .send({
-            from: account,
+            from: user.get("ethAddress"),
           });
 
         createCall.on("transactionHash", (hash) => {
@@ -79,7 +90,7 @@ const NftPage = () => {
                   .doc(typeOfGiveaway.uniqueId)
                   .set({
                     description: typeOfGiveaway.message,
-                    image: file,
+                    image: url,
                     amount: typeOfGiveaway.amount,
                     winner: typeOfGiveaway.winner,
                     creator: typeOfGiveaway.creator,
@@ -135,9 +146,6 @@ const NftPage = () => {
           <button
             className="greenButton"
             style={{ width: "17rem", height: "5rem" }}
-            onClick={navigate("/nft-minting", {
-              state: location.state.typeOfGiveaway,
-            })}
           >
             <span
               style={{

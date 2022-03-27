@@ -17,7 +17,6 @@ import GiveawayDetails from "./components/GiveawayDetails/GiveawayDetails";
 import Timer from "./components/Timer";
 import SingleNft from "./components/YourNfts/SingleNft";
 import NftPage from "./components/YourNfts/NftPage";
-import NftMinting from "./components/YourNfts/firebaseNft";
 
 function App() {
   return (
@@ -44,8 +43,6 @@ function App() {
           element={<GiveawayDetails />}
         ></Route>
         <Route exact path="/nft-details" element={<NftPage />}></Route>
-        <Route exact path="/nft-minting" element={<NftMinting />}></Route>
-
         <Route path="*" element={<Error />}></Route>
       </Routes>
       {/* <Test/> */}

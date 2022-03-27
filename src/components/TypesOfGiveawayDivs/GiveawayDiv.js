@@ -9,9 +9,12 @@ import { useNavigate } from "react-router-dom";
 import contractABI from "../Contract/contractABI.json";
 import Timer from "../Timer";
 import Loader from "../Loader/Loader";
+import nftABI from "../YourNfts/nftAbi.json";
+import BigNumber from "big-number/big-number";
 
 const GiveawayDiv = ({ typeOfGiveaway }) => {
   var newArray = [];
+  const [isMinted, setIsMinted] = useState(false);
   const [participants, setParticipants] = useState([]);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -37,12 +40,14 @@ const GiveawayDiv = ({ typeOfGiveaway }) => {
     );
 
     try {
-      let participationFee = typeOfGiveaway.amount / 10 ** 20;
+      let participationFee = typeOfGiveaway.participationFee;
+      var BN = web3js.utils.BN;
+      const x = new BN(participationFee);
       const participateGiveawayCall = contract.methods
         .participate(typeOfGiveaway.uniqueId)
         .send({
           from: user.get("ethAddress"),
-          value: web3js.utils.toWei(String(participationFee), "ether"),
+          value: x,
         });
 
       participateGiveawayCall.on("error", (error) => {
@@ -71,8 +76,20 @@ const GiveawayDiv = ({ typeOfGiveaway }) => {
         newArray[i] = typeOfGiveaway.participants[i].toLowerCase();
     }
     setParticipants(newArray);
+    setIsMinted(getNftMinted());
     console.log(newArray);
   }, []);
+
+  const getNftMinted = async () => {
+    let web3 = new Web3(window.web3.currentProvider);
+    const contract = new web3.eth.Contract(nftABI, config.nftContractAddress);
+
+    const createCall = await contract.methods
+      .getNftMinted(typeOfGiveaway.uniqueId)
+      .call();
+    console.log(createCall);
+    return createCall;
+  };
 
   return loading ? (
     <Loader />
@@ -196,8 +213,17 @@ const GiveawayDiv = ({ typeOfGiveaway }) => {
               <span className="blackText" style={{ fontSize: "1.2rem" }}>
                 Giveaway Amount
               </span>
-              <span className="normalText" style={{ fontSize: "4rem", display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center"}}>
-                <span>{amount}{" "}</span>
+              <span
+                className="normalText"
+                style={{
+                  fontSize: "4rem",
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <span>{amount} </span>
                 <img
                   src={EthLogo}
                   alt="Ethereum Logo"
@@ -393,7 +419,7 @@ const GiveawayDiv = ({ typeOfGiveaway }) => {
                       user.get("ethAddress").toLowerCase() ? (
                         <span>Your NFT</span>
                       ) : (
-                        <span>Their NFT</span>
+                        isMinted && <span>Their NFT</span>
                       )}
                       <img
                         src={Emoji}

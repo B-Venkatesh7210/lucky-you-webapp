@@ -17,6 +17,7 @@ import GiveawayDetails from "./components/GiveawayDetails/GiveawayDetails";
 import Timer from "./components/Timer";
 import SingleNft from "./components/YourNfts/SingleNft";
 import NftPage from "./components/YourNfts/NftPage";
+import JustMintedNftPage from "./components/YourNfts/justMintedNftPage";
 
 function App() {
   return (
@@ -43,6 +44,11 @@ function App() {
           element={<GiveawayDetails />}
         ></Route>
         <Route exact path="/nft-details" element={<NftPage />}></Route>
+        <Route
+          exact
+          path="/just-minted-nft"
+          element={<JustMintedNftPage />}
+        ></Route>
         <Route path="*" element={<Error />}></Route>
       </Routes>
       {/* <Test/> */}

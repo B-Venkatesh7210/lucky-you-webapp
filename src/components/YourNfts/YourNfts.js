@@ -15,7 +15,9 @@ const YourNfts = () => {
         }}
       >
         <Navbar isSticky />
-        <div style={{ height: "20vh" }}></div>
+        <div style={{ height: "20vh" }}>
+          
+        </div>
       </div>
     </div>
   );

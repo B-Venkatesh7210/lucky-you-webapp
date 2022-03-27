@@ -82,3 +82,14 @@
 .nonActiveTab:hover{
   transform: scale(1.1);
 }
+.metaDataDiv {
+  background: var(--clr-yellow-2);
+  border: 3.5px solid #1b1a17;
+  box-shadow: 9.68px 9.68px 0px #ffffff;
+  box-sizing: border-box;
+  border-radius: 20px;
+  display: "flex";
+  flex-direction: "column";
+  align-items: "center";
+  justify-content: "center";
+}

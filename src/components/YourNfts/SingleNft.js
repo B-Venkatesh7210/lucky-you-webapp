@@ -1,6 +1,7 @@
 import React from "react";
 import LuckyYouLogo from "../../img/LuckyYou Logo.png";
 import EthLogo from "../../img/Ethereum.png";
+import { useEffect } from "react";
 import GiveawayDiv from "../TypesOfGiveawayDivs/GiveawayDiv";
 import moment from "moment";
 import { getEllipsisTxt } from "../../helpers/formatters";
@@ -9,9 +10,14 @@ const SingleNft = ({ typeOfGiveaway }) => {
   const deadline = new Date(typeOfGiveaway.deadline * 1000);
   const amount = typeOfGiveaway.amount / 10 ** 18;
   console.log(deadline);
+
+  const nftRandBg = () => {
+    return Math.floor(Math.random() * 7) + 1;
+  };
+
   return (
     <div
-      className="singleNft"
+      className={`singleNft singleNft${nftRandBg()}`}
       style={{
         width: "40rem",
         height: "40rem",

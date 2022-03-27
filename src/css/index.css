@@ -67,7 +67,7 @@ code {
   color: black;
 }
 
-.blackGuava{
+.blackGuava {
   font-family: Guava Candy;
   color: black;
   font-weight: 500;
@@ -106,11 +106,6 @@ code {
 }
 
 .singleNft {
-  background: linear-gradient(
-    89.67deg,
-    #111f3e 25.46%,
-    rgba(0, 86, 224, 0.91) 99.69%
-  );
   border: 5px solid #1b1a17;
   box-shadow: -10px -10px 40px 10px rgba(255, 227, 56, 0.75),
     10px 10px 40px 10px rgba(255, 227, 56, 0.75);
@@ -118,21 +113,73 @@ code {
   transform: scale(0.7);
 }
 
-.tapButton{
+.tapButton {
   transition: all 0.4s ease-in-out;
 }
 
-.tapButton:hover{
+.tapButton:hover {
   transform: scale(1.1);
   border: 6.84px solid black;
   box-shadow: 10.68px 10.68px 0px #ffffff;
 }
 
-.tapButton2{
+.tapButton2 {
   transition: all 0.4s ease-in-out;
 }
 
-.tapButton2:hover{
+.tapButton2:hover {
   transform: scale(1.04);
   border: 6.84px solid black;
+}
+
+.singleNft1 {
+  background: #00f260;
+  background: -webkit-linear-gradient(to right, #0575e6, #00f260);
+  background: linear-gradient(to right, #0575e6, #00f260);
+}
+.singleNft2 {
+  background: linear-gradient(
+    90.19deg,
+    #800080 46.09%,
+    rgba(255, 192, 203, 0.91) 99.85%
+  );
+}
+
+.singleNft3 {
+  background: linear-gradient(
+    90.54deg,
+    #0f0c29 8.07%,
+    rgba(48, 43, 99, 0.958938) 47.94%,
+    rgba(36, 36, 62, 0.91) 88.31%
+  );
+}
+.singleNft4 {
+  background: linear-gradient(
+    90.54deg,
+    #0f0c29 8.07%,
+    rgba(48, 43, 99, 0.958938) 47.94%,
+    rgba(36, 36, 62, 0.91) 88.31%
+  );
+}
+.singleNft5 {
+  background: linear-gradient(
+    89.59deg,
+    #40e0d0 5.89%,
+    rgba(255, 0, 128, 0.91) 73.72%
+  );
+}
+.singleNft6 {
+  background: linear-gradient(
+    90.41deg,
+    #333333 -3.04%,
+    rgba(221, 24, 24, 0.91) 52.17%,
+    rgba(51, 51, 51, 0.91) 105.57%
+  );
+}
+.singleNft7 {
+  background: linear-gradient(
+    89.67deg,
+    #111f3e 25.46%,
+    rgba(0, 86, 224, 0.91) 99.69%
+  );
 }

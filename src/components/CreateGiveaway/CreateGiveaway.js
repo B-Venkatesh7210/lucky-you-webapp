@@ -7,10 +7,12 @@ import { useMoralis } from "react-moralis";
 import Web3 from "web3";
 import config from "../config/config";
 import contractABI from "../Contract/contractABI.json";
+import Loader from "../Loader/Loader";
 
 
 const CreateGiveaway = () => {
   const { user, isAuthenticated } = useMoralis();
+  const [loading, setLoading] = useState(false);
   let navigate = useNavigate();
   const [formData, setFormData] = useState({
     message: "",
@@ -34,6 +36,7 @@ const CreateGiveaway = () => {
     let web3js;
     web3js = new Web3(window.web3.currentProvider);
 //
+    setLoading(true);
     const contract = new web3js.eth.Contract(
       contractABI,
       config.contractAddress
@@ -53,6 +56,7 @@ const CreateGiveaway = () => {
 
       createGiveawayCall.on("error", (error) => {
         //
+        setLoading(false);
         console.log(error);
         alert(error);
       });
@@ -60,19 +64,22 @@ const CreateGiveaway = () => {
       contract.events.GiveawayCreated({}, function (error, event) {
         console.log(event);
         //
+        setLoading(false);
         navigate("/giveaway-details", { state: event.returnValues });
         
       
       });
     } catch (error) {
 //
+      setLoading(false);
       alert(error.message);
     }
 
   };
 
   return (
-    <div className="mainBg2">
+    loading ? <Loader/> : 
+    (<div className="mainBg2">
       <div
         style={{
           display: "flex",
@@ -216,7 +223,7 @@ const CreateGiveaway = () => {
               <img
                 alt="Ethereum Logo"
                 src={EthLogo}
-                style={{ width: "1.5rem", marginRight: "1rem" }}
+                style={{ width: "2.5rem", marginRight: "1rem" }}
               ></img>
             </div>
           </div>
@@ -267,7 +274,7 @@ const CreateGiveaway = () => {
           </div>
           <button
             type="submit"
-            className="greenButton2"
+            className="greenButton2 tapButton"
             style={{ width: "22rem", height: "6rem", marginTop: "3rem" }}
           >
             <span
@@ -287,7 +294,7 @@ const CreateGiveaway = () => {
           </button>
         </form>
       </div>
-    </div>
+    </div>)
   );
 };
 

@@ -32,8 +32,8 @@ function Wallet() {
   if (!isAuthenticated) {
     return (
       <button
-        className="button connectWallet"
-        style={{ height: "8vh", width: "15%", cursor: "pointer" }}
+        className="button tapButton"
+        style={{ height: "8vh", width: "15%", cursor: "pointer", marginRight: "3rem" }}
         onClick={() =>
           authenticate({
             signingMessage: "Welcome to Lucky You",
@@ -66,7 +66,7 @@ function Wallet() {
         <span
           style={{
             textDecoration: "underline",
-            fontSize: "16px",
+            fontSize: "14px",
             fontWeight: "500",
             cursor: "pointer",
             color: "blue",

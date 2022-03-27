@@ -36,7 +36,7 @@ code {
   height: 100vh;
   width: 100%;
   background-image: url("../img/Vector1.png");
-  background-size: 40rem 40rem;
+  background-size: 50rem 50rem;
   background-repeat: no-repeat;
   background-position: left;
 }
@@ -46,7 +46,7 @@ code {
   height: 100vh;
   width: 100%;
   background-image: url("../img/Vector2.png");
-  background-size: 40rem 40rem;
+  background-size: 50rem 50rem;
   background-repeat: no-repeat;
   background-position: right;
 }
@@ -65,6 +65,12 @@ code {
   font-family: Gunplay;
   font-weight: 400;
   color: black;
+}
+
+.blackGuava{
+  font-family: Guava Candy;
+  color: black;
+  font-weight: 500;
 }
 
 .normalText {
@@ -109,6 +115,24 @@ code {
   box-shadow: -10px -10px 40px 10px rgba(255, 227, 56, 0.75),
     10px 10px 40px 10px rgba(255, 227, 56, 0.75);
   border-radius: 40px;
-  transform: scale(0.7)
+  transform: scale(0.7);
+}
 
+.tapButton{
+  transition: all 0.4s ease-in-out;
+}
+
+.tapButton:hover{
+  transform: scale(1.1);
+  border: 6.84px solid black;
+  box-shadow: 10.68px 10.68px 0px #ffffff;
+}
+
+.tapButton2{
+  transition: all 0.4s ease-in-out;
+}
+
+.tapButton2:hover{
+  transform: scale(1.04);
+  border: 6.84px solid black;
 }

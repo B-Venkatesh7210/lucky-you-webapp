@@ -36,7 +36,7 @@ const Navbar = ({ isSticky }) => {
         }}
       >
         <NavLink className={(navData) => navData.isActive ? "activeTab" : ""} to="/home">
-          <div style={{ width: "10%" }}>
+          <div className="nonActiveTab" style={{ width: "10%" }}>
             <img
               alt="Lucky You Logo"
               src={Logo}
@@ -56,20 +56,16 @@ const Navbar = ({ isSticky }) => {
           }}
         >
           <NavLink className={(navData) => navData.isActive ? "activeTab" : ""} to="/won-giveaways">
-          {/* <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}> */}
           <img
+          className="nonActiveTab"
               alt="Won Giveaways Logo"
               src={WonGiveawaysLogo}
               style={{ width: "12rem" }}
             ></img>
-            {/* <div style={{height: "1rem", width: "4rem", background: "red"}}>
-
-            </div> */}
-          {/* </div> */}
-            
-          </NavLink>
+            </NavLink>
           <NavLink className={(navData) => navData.isActive ? "activeTab" : ""} to="/your-nfts">
             <img
+            className="nonActiveTab"
               alt="Your NFTs Logo"
               src={YourNftsLogo}
               style={{ width: "6.3rem" }}
@@ -77,6 +73,7 @@ const Navbar = ({ isSticky }) => {
           </NavLink>
           <NavLink className={(navData) => navData.isActive ? "activeTab" : ""} to="/your-giveaways">
             <img
+            className="nonActiveTab"
               alt="Your Giveaways Logo"
               src={YourGiveawaysLogo}
               style={{ width: "12rem" }}

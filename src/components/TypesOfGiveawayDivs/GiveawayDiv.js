@@ -8,14 +8,17 @@ import config from "../config/config";
 import { useNavigate } from "react-router-dom";
 import contractABI from "../Contract/contractABI.json";
 import Timer from "../Timer";
+import Loader from "../Loader/Loader";
 
-const GiveawayDiv = ({ typeOfGiveaway}) => {
+const GiveawayDiv = ({ typeOfGiveaway }) => {
   var newArray = [];
   const [participants, setParticipants] = useState([]);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const smallTimer = true;
   const amount = typeOfGiveaway.amount / 10 ** 18;
   const participationFee = typeOfGiveaway.participationFee / 10 ** 18;
+  const socialLinkHref = "https://" + typeOfGiveaway.socialLink;
 
   const { user, isAuthenticated } = useMoralis();
 
@@ -27,7 +30,7 @@ const GiveawayDiv = ({ typeOfGiveaway}) => {
 
     let web3js;
     web3js = new Web3(window.web3.currentProvider);
-
+    setLoading(true);
     const contract = new web3js.eth.Contract(
       contractABI,
       config.contractAddress
@@ -44,14 +47,17 @@ const GiveawayDiv = ({ typeOfGiveaway}) => {
 
       participateGiveawayCall.on("error", (error) => {
         console.log(error);
+        setLoading(false);
         alert(error);
       });
 
       contract.events.GiveawayParticipated({}, function (error, event) {
         console.log(event);
+        setLoading(false);
         navigate("/participated-giveaways", { state: event });
       });
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
   };
@@ -68,7 +74,9 @@ const GiveawayDiv = ({ typeOfGiveaway}) => {
     console.log(newArray);
   }, []);
 
-  return user ? (
+  return loading ? (
+    <Loader />
+  ) : user ? (
     user.get("ethAddress") ? (
       <>
         <div
@@ -138,16 +146,20 @@ const GiveawayDiv = ({ typeOfGiveaway}) => {
               >
                 {typeOfGiveaway.message}
               </span>
-              <span
+              <a
+                rel="noreferrer"
+                href={socialLinkHref}
+                target="_blank"
                 className="normalText"
                 style={{
                   fontSize: "30px",
                   color: "blue",
                   textDecoration: "underline",
+                  cursor: "pointer",
                 }}
               >
                 {typeOfGiveaway.socialLink}
-              </span>
+              </a>
             </div>
           </div>
           <div
@@ -184,12 +196,12 @@ const GiveawayDiv = ({ typeOfGiveaway}) => {
               <span className="blackText" style={{ fontSize: "1.2rem" }}>
                 Giveaway Amount
               </span>
-              <span className="normalText" style={{ fontSize: "4rem" }}>
-                {amount}{" "}
+              <span className="normalText" style={{ fontSize: "4rem", display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center"}}>
+                <span>{amount}{" "}</span>
                 <img
                   src={EthLogo}
                   alt="Ethereum Logo"
-                  style={{ width: "2rem" }}
+                  style={{ width: "3.5rem", marginLeft: "1rem" }}
                 ></img>
               </span>
             </div>
@@ -208,7 +220,7 @@ const GiveawayDiv = ({ typeOfGiveaway}) => {
                 <img
                   src={EthLogo}
                   alt="Ethereum Logo"
-                  style={{ width: "1.2rem", marginLeft: "1rem" }}
+                  style={{ width: "2rem", marginLeft: "1rem" }}
                 ></img>
               </span>
             </div>
@@ -250,7 +262,7 @@ const GiveawayDiv = ({ typeOfGiveaway}) => {
                 </button>
               ) : (
                 <button
-                  className="greenButton"
+                  className="greenButton tapButton"
                   style={{ width: "17rem", height: "4rem" }}
                   onClick={participateGiveaway}
                 >
@@ -273,6 +285,45 @@ const GiveawayDiv = ({ typeOfGiveaway}) => {
                   </span>
                 </button>
               )
+            ) : typeOfGiveaway.participants.length === 0 ? (
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  width: "80%",
+                  justifyContent: "space-evenly",
+                }}
+              >
+                <button
+                  className="greenButton"
+                  style={{ width: "17rem", height: "5rem", cursor: "auto" }}
+                >
+                  <span
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      justifyContent: "space-around",
+                      fontFamily: "Hand Drawn Shapes",
+                    }}
+                  >
+                    <span style={{ fontSize: "24px" }}>
+                      No one Participated
+                    </span>
+                  </span>
+                </button>
+                <span
+                  style={{
+                    fontFamily: "Hand Drawn Shapes",
+                    fontSize: "24px",
+                    color: "black",
+                    marginLeft: "4rem",
+                  }}
+                >
+                  The amount of giveaway has been refunded to the creator.
+                </span>
+              </div>
             ) : (
               <div
                 style={{
@@ -285,7 +336,7 @@ const GiveawayDiv = ({ typeOfGiveaway}) => {
               >
                 <button
                   className="greenButton"
-                  style={{ width: "17rem", height: "5rem" }}
+                  style={{ width: "17rem", height: "5rem", cursor: "auto" }}
                 >
                   <span
                     style={{
@@ -321,7 +372,7 @@ const GiveawayDiv = ({ typeOfGiveaway}) => {
                 </button>
                 <div>
                   <button
-                    className="greenButton"
+                    className="greenButton tapButton2"
                     style={{ width: "17rem", height: "5rem" }}
                     onClick={() => {
                       navigate("/nft-details", { state: typeOfGiveaway });

@@ -10,7 +10,7 @@ import { useMoralis } from "react-moralis";
 
 const HomePage = () => {
   const [liveGiveaways, setLiveGiveaways] = useState([]);
-  const { isAuthenticated } = useMoralis();
+  const { isAuthenticated, user } = useMoralis();
 
   const getAllGiveaways = async () => {
     let web3js;
@@ -36,7 +36,7 @@ const HomePage = () => {
     }
   }, [isAuthenticated]);
 
-  return (
+  return ( 
     <div className="mainBg2">
       <div
         style={{
@@ -60,7 +60,7 @@ const HomePage = () => {
         >
           <Link to="/participated-giveaways">
             <button
-              className="button"
+              className="button tapButton"
               style={{
                 height: "10vh",
                 width: "15rem",
@@ -79,7 +79,7 @@ const HomePage = () => {
           />
           <Link to="/create-giveaway">
             <button
-              className="button"
+              className="button tapButton"
               style={{ height: "10vh", width: "15rem", marginTop: "10rem" }}
             >
               <span className="normalText" style={{ fontSize: "24px" }}>
@@ -105,7 +105,10 @@ const HomePage = () => {
           </div>
           <span>Live Giveaways</span>
         </span>
-        {liveGiveaways.map((liveGiveaway) => (
+        {liveGiveaways.length===0 ? (<span className="whiteText" style={{fontSize: "30px", marginTop: "1rem"}}>
+          No Giveaway is LIVE
+        </span>) : 
+          liveGiveaways.map((liveGiveaway) => (
           <GiveawayDiv typeOfGiveaway={liveGiveaway} />
         ))}
       </div>

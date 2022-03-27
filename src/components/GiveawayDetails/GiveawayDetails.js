@@ -142,7 +142,7 @@ const GiveawayDetails = () => {
         >
           <Link to="/home">
             <button
-              className="greenButton2"
+              className="greenButton2 tapButton"
               style={{ width: "22rem", height: "6rem", marginTop: "3rem" }}
             >
               <span
@@ -160,7 +160,7 @@ const GiveawayDetails = () => {
           </Link>
           <a rel="noreferrer" href={gelatoHref} target="_blank">
             <button
-              className="greenButton2"
+              className="greenButton2 tapButton"
               style={{ width: "22rem", height: "6rem", marginTop: "3rem" }}
             >
               <span

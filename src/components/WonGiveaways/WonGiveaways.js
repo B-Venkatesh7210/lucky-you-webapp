@@ -49,7 +49,7 @@ const WonGiveaways = () => {
         <div style={{ height: "20vh" }}></div>
         {wonGiveaways.length===0 ? (<span className="whiteText"
           style={{
-            fontSize: "40px",
+            fontSize: "60px",
             marginTop: "6rem",
           }}>You've not won any giveaway.</span>) :
           wonGiveaways.map((wonGiveaway) => (

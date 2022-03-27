@@ -67,8 +67,18 @@
 }
 
 .activeTab {
-  /* border-bottom: 2px solid red; */
-  /* -webkit-box-shadow: 0 8px 6px -6px white; */
-  /* -moz-box-shadow: 0 8px 6px -6px white; */
   box-shadow: 0 15px 5px -6px gold;
+  transition: all 0.25s ease-in-out;
+}
+
+.nonActiveTab {
+  transition: all 0.25s ease-in-out;
+}
+
+.activeTab:hover{
+  transform: scale(1.1);
+}
+
+.nonActiveTab:hover{
+  transform: scale(1.1);
 }

@@ -36,7 +36,7 @@ const HomePage = () => {
     }
   }, [isAuthenticated]);
 
-  return ( 
+  return (
     <div className="mainBg2">
       <div
         style={{
@@ -58,59 +58,88 @@ const HomePage = () => {
             width: "100%",
           }}
         >
-          <Link to="/participated-giveaways">
-            <button
-              className="button tapButton"
-              style={{
-                height: "10vh",
-                width: "15rem",
-                marginTop: "10rem",
-              }}
-            >
-              <span className="normalText" style={{ fontSize: "24px" }}>
-                Participated Giveaways
-              </span>
-            </button>
-          </Link>
+          <div style={{ marginTop: "10rem" }}>
+            <Link to="/participated-giveaways">
+              <button
+                className="button tapButton"
+                style={{
+                  height: "10vh",
+                  width: "15rem",
+                }}
+              >
+                <span className="normalText" style={{ fontSize: "24px" }}>
+                  Participated Giveaways
+                </span>
+              </button>
+            </Link>
+          </div>
+
           <img
             alt="Lucky You Logo"
             src={Logo}
             style={{ width: "40%", marginTop: "7rem" }}
           />
-          <Link to="/create-giveaway">
-            <button
-              className="button tapButton"
-              style={{ height: "10vh", width: "15rem", marginTop: "10rem" }}
-            >
-              <span className="normalText" style={{ fontSize: "24px" }}>
-                Create a Giveaway
-              </span>
-            </button>
-          </Link>
-        </div>
-        <span
-          className="whiteText"
-          style={{
-            fontSize: "60px",
-            marginTop: "2rem",
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-          }}
-        >
-          <div
-            className="greenCircle"
-            style={{ width: "2rem", height: "2rem", marginRight: "2rem" }}
-          >
+          <div style={{ marginTop: "10rem" }}>
+            <Link to="/create-giveaway">
+              <button
+                className="button tapButton"
+                style={{ height: "10vh", width: "15rem" }}
+              >
+                <span className="normalText" style={{ fontSize: "24px" }}>
+                  Create a Giveaway
+                </span>
+              </button>
+            </Link>
           </div>
-          <span>Live Giveaways</span>
-        </span>
-        {liveGiveaways.length===0 ? (<span className="whiteText" style={{fontSize: "30px", marginTop: "1rem"}}>
-          No Giveaway is LIVE
-        </span>) : 
-          liveGiveaways.map((liveGiveaway) => (
-          <GiveawayDiv typeOfGiveaway={liveGiveaway} />
-        ))}
+        </div>
+        {user ? (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-evenly",
+              alignItems: "center",
+              width: "100%",
+            }}
+          >
+            <span
+              className="whiteText"
+              style={{
+                fontSize: "60px",
+                marginTop: "2rem",
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              <div
+                className="greenCircle"
+                style={{ width: "2rem", height: "2rem", marginRight: "2rem" }}
+              ></div>
+              <span>Live Giveaways</span>
+            </span>
+            {liveGiveaways.length === 0 ? (
+              <span
+                className="whiteText"
+                style={{ fontSize: "30px", marginTop: "1rem" }}
+              >
+                No Giveaway is LIVE
+              </span>
+            ) : (
+              liveGiveaways.map((liveGiveaway) => (
+                <GiveawayDiv typeOfGiveaway={liveGiveaway} />
+              ))
+            )}
+          </div>
+        ) : (
+          <span
+            className="whiteText"
+            style={{ fontSize: "50px", marginTop: "3rem" }}
+          >
+            {" "}
+            Please connect your wallet
+          </span>
+        )}
       </div>
     </div>
   );

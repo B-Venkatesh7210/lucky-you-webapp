@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Ethereum from "../img/Ethereum.png";
 import LINK from "../img/LINK.png";
 import Filecoin from "../img/FIL.png";
+import Sample from "../img/sample.gif"
 
 const Home = () => {
   return (
@@ -53,6 +54,26 @@ const Home = () => {
   );
 };
 
+
+const TechnologiesUsed = () => {
+  return (
+    <div
+      className="mainBg"
+      style={{
+        height: "30vh",
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <span className="whiteText" style={{ fontSize: "80px" }}>
+        Technologies Used
+      </span>
+    </div>
+  );
+};
+
 const Guide = () => {
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
@@ -69,7 +90,6 @@ const Guide = () => {
             style={{
               width: "45rem",
               height: "40rem",
-              // background: "red",
               marginTop: "4rem",
               display: "flex",
               flexDirection: "column",
@@ -101,7 +121,6 @@ const Guide = () => {
               style={{
                 width: "90%",
                 height: "70%",
-                // background: "green",
                 marginTop: "2rem",
               }}
             >
@@ -118,8 +137,19 @@ const Guide = () => {
             </div>
           </div>
           <div
-            style={{ width: "40rem", height: "40rem", background: "blue" }}
-          ></div>
+            style={{
+              width: "40rem",
+              height: "40rem",
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <img 
+            className="gif"
+            alt="gif" src={Sample} style={{width: "90%", marginRight: "8rem"}}/>
+          </div>
         </div>
       </div>
       <div className="rightBg">
@@ -132,13 +162,23 @@ const Guide = () => {
           }}
         >
           <div
-            style={{ width: "40rem", height: "40rem", background: "blue" }}
-          ></div>
+            style={{
+              width: "40rem",
+              height: "40rem",
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <img 
+            className="gif"
+            alt="gif" src={Sample} style={{width: "90%", marginLeft: "8rem"}}/>
+          </div>
           <div
             style={{
               width: "45rem",
               height: "40rem",
-              // background: "red",
               marginTop: "4rem",
               display: "flex",
               flexDirection: "column",
@@ -165,8 +205,6 @@ const Guide = () => {
               style={{
                 width: "90%",
                 height: "70%",
-                // background: "green",
-
                 marginLeft: "2rem",
               }}
             >
@@ -202,7 +240,6 @@ const Guide = () => {
             style={{
               width: "45rem",
               height: "40rem",
-              // background: "red",
               marginTop: "4rem",
               display: "flex",
               flexDirection: "column",
@@ -230,7 +267,6 @@ const Guide = () => {
               style={{
                 width: "90%",
                 height: "70%",
-                // background: "green",
                 marginTop: "2rem",
               }}
             >
@@ -249,8 +285,19 @@ const Guide = () => {
             </div>
           </div>
           <div
-            style={{ width: "40rem", height: "40rem", background: "blue" }}
-          ></div>
+            style={{
+              width: "40rem",
+              height: "40rem",
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <img 
+            className="gif"
+            alt="gif" src={Sample} style={{width: "90%", marginRight: "8rem"}}/>
+          </div>
         </div>
       </div>
       <div className="rightBg">
@@ -263,13 +310,23 @@ const Guide = () => {
           }}
         >
           <div
-            style={{ width: "40rem", height: "40rem", background: "blue" }}
-          ></div>
+            style={{
+              width: "40rem",
+              height: "40rem",
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <img 
+            className="gif"
+            alt="gif" src={Sample} style={{width: "90%", marginLeft: "8rem"}}/>
+          </div>
           <div
             style={{
               width: "45rem",
               height: "40rem",
-              // background: "red",
               marginTop: "4rem",
               display: "flex",
               flexDirection: "column",
@@ -301,8 +358,6 @@ const Guide = () => {
               style={{
                 width: "90%",
                 height: "70%",
-                // background: "green",
-
                 marginLeft: "2rem",
               }}
             >
@@ -323,25 +378,6 @@ const Guide = () => {
           </div>
         </div>
       </div>
-    </div>
-  );
-};
-
-const TechnologiesUsed = () => {
-  return (
-    <div
-      className="mainBg"
-      style={{
-        height: "30vh",
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <span className="whiteText" style={{ fontSize: "80px" }}>
-        Technologies Used
-      </span>
     </div>
   );
 };

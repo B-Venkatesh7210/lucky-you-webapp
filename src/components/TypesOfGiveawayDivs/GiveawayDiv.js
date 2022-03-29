@@ -10,7 +10,6 @@ import contractABI from "../Contract/contractABI.json";
 import Timer from "../Timer";
 import Loader from "../Loader/Loader";
 import nftABI from "../YourNfts/nftAbi.json";
-import BigNumber from "big-number/big-number";
 
 const GiveawayDiv = ({ typeOfGiveaway }) => {
   var newArray = [];
@@ -69,7 +68,7 @@ const GiveawayDiv = ({ typeOfGiveaway }) => {
 
   useEffect(() => {
     console.log(typeOfGiveaway.participants);
-    console.log(user.get("ethAddress"));
+    // console.log(user.get("ethAddress"));
 
     for (var i = 0; i < typeOfGiveaway.participants.length; i++) {
       if (typeOfGiveaway.participants[i])
@@ -135,6 +134,7 @@ const GiveawayDiv = ({ typeOfGiveaway }) => {
               >
                 <span>Time :</span>
                 {typeOfGiveaway.isLive ? (
+                  typeOfGiveaway.isProcessing ? <span className="normalText" style={{fontSize: "30px", marginLeft: "10px"}}>Declaring Winner</span> : 
                   <Timer
                     endTime={typeOfGiveaway.deadline}
                     smallTimer={smallTimer}
@@ -266,9 +266,22 @@ const GiveawayDiv = ({ typeOfGiveaway }) => {
             }}
           >
             {typeOfGiveaway.isLive ? (
-              participants.includes(
-                user.get("ethAddress") && user.get("ethAddress").toLowerCase()
-              ) ? (
+              typeOfGiveaway.isProcessing ? (
+                <span
+                  style={{
+                    fontFamily: "Hand Drawn Shapes",
+                    fontSize: "24px",
+                    color: "black",
+                    textAlign: "center",
+                    padding: "0rem 6rem"
+                
+                  }}
+                >
+                  Gelato and Chainlink are working to declare the winner. Please wait for few minutes.
+                </span>
+              ) : participants.includes(
+                  user.get("ethAddress") && user.get("ethAddress").toLowerCase()
+                ) ? (
                 <button
                   className="greenButton"
                   style={{
@@ -408,7 +421,8 @@ const GiveawayDiv = ({ typeOfGiveaway }) => {
                   <button
                     className="greenButton tapButton2"
                     style={{ width: "17rem", height: "5rem" }}
-                    onClick={(e) => {e.stopPropagation();
+                    onClick={(e) => {
+                      e.stopPropagation();
                       navigate("/nft-details", { state: typeOfGiveaway });
                     }}
                   >

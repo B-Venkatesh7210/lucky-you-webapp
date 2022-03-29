@@ -8,7 +8,9 @@ const GiveawayDetails = () => {
   let location = useLocation();
   const amount = location.state.amount / 10 ** 18;
   const endTime = parseInt(location.state.deadline);
-  var gelatoHref = "https://app.gelato.network/task/" + location.state.taskId + "?chainId=4"
+  var gelatoHref = "https://app.gelato.network/task/" + location.state.taskId + "?chainId=4";
+  const hasEnded = (Date.now()/1000)>parseInt(location.state.deadline);
+  const isProcessing = location.state.isProcessing;
 
   return location.state ? (
     <div className="mainBg2">
@@ -38,7 +40,7 @@ const GiveawayDetails = () => {
             alignItems: "center",
           }}
         >
-          <Timer endTime={endTime} />
+          <Timer endTime={endTime} hasEnded={hasEnded} isProcessing={isProcessing} />
           <div
             style={{
               height: "15vh",
@@ -126,7 +128,7 @@ const GiveawayDetails = () => {
               <img
                 alt="Ethereum Logo"
                 src={EthLogo}
-                style={{ width: "1.5rem", marginRight: "1rem" }}
+                style={{ width: "2.5rem", marginRight: "1rem" }}
               ></img>
             </div>
           </div>

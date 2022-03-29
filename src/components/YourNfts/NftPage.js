@@ -11,6 +11,7 @@ import nftABI from "./nftAbi.json";
 import config from "../config/config.js";
 import { NFTStorage, File } from "nft.storage";
 import JustMintedNftPage from "./justMintedNftPage";
+import Loader from "../Loader/Loader";
 
 const client = new NFTStorage({
   token:
@@ -21,6 +22,7 @@ const NftPage = () => {
   const navigate = useNavigate();
   const [isMinted, setIsMinted] = useState(false);
   const { account, user } = useMoralis();
+  const [loading, setLoading] = useState(false);
   const printRef = React.useRef();
   const [typeOfGiveaway, setTypeOfGiveaway] = useState();
   let location = useLocation();
@@ -45,6 +47,7 @@ const NftPage = () => {
   }, []);
 
   const handleDownloadImage = async () => {
+    setLoading(true);
     const element = printRef.current;
     console.log("here");
     const canvas = await html2canvas(element);
@@ -108,9 +111,12 @@ const NftPage = () => {
                   })
                   .then(() => {
                     navigate("/just-minted-nft", { state: typeOfGiveaway });
+                    setLoading(false);
+                    
                     // location.state.winner
                     // alert("Your NFT is minted successfully.");
                   });
+                  console.log(loading)
               });
             });
         });
@@ -125,60 +131,66 @@ const NftPage = () => {
     });
   };
 
-  return location.state ? (
-    location.state.winner.toLowerCase() ===
-    user.get("ethAddress").toLowerCase() ? (
-      isMinted ? (
-        <JustMintedNftPage typeOfGiveaway={typeOfGiveaway} type={1} />
-      ) : (
-        <div className="mainBg2">
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "space-evenly",
-              padding: "2rem 0rem",
-            }}
-          >
-            <Navbar isSticky />
-            <div style={{ height: "5vh" }}></div>
+  return loading ? <Loader/> : (
+    location.state ? (
+      location.state.winner.toLowerCase() ===
+      user.get("ethAddress").toLowerCase() ? (
+        isMinted ? (
+          <JustMintedNftPage typeOfGiveaway={typeOfGiveaway} type={1} />
+        ) : (
+          <div className="mainBg2">
             <div
               style={{
                 display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-around",
+                flexDirection: "column",
                 alignItems: "center",
+                justifyContent: "space-evenly",
+                padding: "2rem 0rem",
               }}
             >
-              <div ref={printRef}>
-                <SingleNft typeOfGiveaway={location.state} />
-              </div>
-              <button
-                className="greenButton"
-                style={{ width: "17rem", height: "5rem" }}
+              <Navbar isSticky />
+              <div style={{ height: "5vh" }}></div>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-around",
+                  alignItems: "center",
+                  marginTop: "6rem",
+                  width: "70%",
+                  height: "70vh",
+                }}
               >
-                <span
-                  style={{
-                    justifyContent: "space-around",
-                    fontFamily: "Hand Drawn Shapes",
-                    fontSize: "32px",
-                  }}
-                  onClick={handleDownloadImage}
+                <div ref={printRef}>
+                  <SingleNft typeOfGiveaway={location.state} />
+                </div>
+                <button
+                  className="greenButton tapButton2"
+                  style={{ width: "17rem", height: "5rem" }}
                 >
-                  Mint Your NFT
-                </span>
-              </button>
+                  <span
+                    style={{
+                      justifyContent: "space-around",
+                      fontFamily: "Hand Drawn Shapes",
+                      fontSize: "32px",
+                    }}
+                    onClick={handleDownloadImage}
+                  >
+                    Mint Your NFT
+                  </span>
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        )
+      ) : (
+        <JustMintedNftPage typeOfGiveaway={typeOfGiveaway} type={2} />
       )
     ) : (
-      <JustMintedNftPage typeOfGiveaway={typeOfGiveaway} type={2} />
+      <div>loading</div>
     )
-  ) : (
-    <div>loading</div>
-  );
+  )
+  
 };
 
 export default NftPage;

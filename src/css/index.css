@@ -107,8 +107,8 @@ code {
 
 .singleNft {
   border: 5px solid #1b1a17;
-  box-shadow: -10px -10px 40px 10px rgba(255, 227, 56, 0.75),
-    10px 10px 40px 10px rgba(255, 227, 56, 0.75);
+  box-shadow: -4px -4px 60px -20px rgba(255, 227, 56, 0.75),
+    4px 4px 60px -20px rgba(255, 227, 56, 0.75);
   border-radius: 40px;
   /* transform: scale(0.7); */
 }
@@ -182,4 +182,11 @@ code {
     #111f3e 25.46%,
     rgba(0, 86, 224, 0.91) 99.69%
   );
+}
+
+.gif{
+  border: 3px solid white;
+  box-shadow: -4px -4px 50px -10px rgba(255, 227, 56, 0.75),
+    4px 4px 50px -10px rgba(255, 227, 56, 0.75);
+  border-radius: 40px;
 }

@@ -38,6 +38,9 @@ const YourNfts = () => {
                 alignItems: "center",
                 justifyContent: "center",
                 height: "60vh",
+                fontSize: "60px",
+                fontFamily: "Hand Drawn Shapes",
+                letterSpacing: "3px"
               }}
             >
               No NFT created yet

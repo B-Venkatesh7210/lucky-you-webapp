@@ -21,12 +21,13 @@ const SingleNft = ({ typeOfGiveaway }) => {
     <div
       className={`singleNft singleNft${nftRandBg()}`}
       style={{
-        width: "40rem",
-        height: "40rem",
+        width: "30rem",
+        height: "30rem",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
         alignItems: "center",
+        padding: "1rem"
       }}
     >
       <div
@@ -35,13 +36,13 @@ const SingleNft = ({ typeOfGiveaway }) => {
           flexDirection: "row",
           justifyContent: "space-evenly",
           alignItems: "center",
-          width: "100%",
+          width: "90%",
         }}
       >
-        <span className="nftWhite" style={{ fontSize: "35px" }}>
+        <span className="nftWhite" style={{ fontSize: "28px" }}>
           Creator:
         </span>
-        <span className="nftWhite" style={{ fontSize: "50px" }}>
+        <span className="nftWhite" style={{ fontSize: "40px" }}>
           {getEllipsisTxt(typeOfGiveaway.creator)}
         </span>
       </div>
@@ -56,9 +57,9 @@ const SingleNft = ({ typeOfGiveaway }) => {
         <img
           alt="Luck You Logo"
           src={LuckyYouLogo}
-          style={{ width: "20rem" }}
+          style={{ width: "15rem" }}
         ></img>
-        <span className="nftWhite" style={{ fontSize: "50px" }}>
+        <span className="nftWhite" style={{ fontSize: "40px" }}>
           {getEllipsisTxt(typeOfGiveaway.winner)}
         </span>
         <div
@@ -72,7 +73,7 @@ const SingleNft = ({ typeOfGiveaway }) => {
         >
           <span
             className="nftWhite"
-            style={{ color: "#FFE338", fontSize: "120px" }}
+            style={{ color: "#FFE338", fontSize: "90px" }}
           >
             {amount}
           </span>
@@ -92,10 +93,10 @@ const SingleNft = ({ typeOfGiveaway }) => {
           width: "80%",
         }}
       >
-        <span className="nftWhite" style={{ fontSize: "35px" }}>
+        <span className="nftWhite" style={{ fontSize: "28px" }}>
           Date:
         </span>
-        <span className="nftWhite" style={{ fontSize: "50px" }}>
+        <span className="nftWhite" style={{ fontSize: "40px" }}>
           {moment(deadline).format("MMMM d, YYYY")}
         </span>
       </div>

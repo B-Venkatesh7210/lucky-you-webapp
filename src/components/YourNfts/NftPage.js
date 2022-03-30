@@ -34,18 +34,16 @@ const NftPage = () => {
 
     const createCall = await contract.methods.getNftMinted(uniqueId).call();
     setIsMinted(createCall);
-    // console.log(createCall);
+    // console.log(isMinted);
   };
 
   const nftRandBg = () => {
     return Math.floor(Math.random() * 10) + 1;
   };
 
-
   const colorChange = () => {
     setRandNum(nftRandBg());
-  }
-
+  };
 
   useEffect(() => {
     setTypeOfGiveaway(location.state);
@@ -143,91 +141,99 @@ const NftPage = () => {
     });
   };
 
-  return user ? 
-  loading ? (
-    <Loader />
-  ) : location.state ? (
-    location.state.winner.toLowerCase() ===
-    user.get("ethAddress").toLowerCase() ? (
-      isMinted ? (
-        <JustMintedNftPage typeOfGiveaway={typeOfGiveaway} type={1} />
-      ) : (
-        <div className="mainBg2">
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "space-evenly",
-              padding: "2rem 0rem",
-            }}
-          >
-            <Navbar isSticky />
-            <div style={{ height: "5vh" }}></div>
+  return user ? (
+    loading ? (
+      <Loader />
+    ) : location.state ? (
+      location.state.winner.toLowerCase() ===
+      user.get("ethAddress").toLowerCase() ? (
+        isMinted ? (
+          <JustMintedNftPage typeOfGiveaway={typeOfGiveaway} type={1} />
+        ) : (
+          <div className="mainBg2">
             <div
               style={{
                 display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-around",
+                flexDirection: "column",
                 alignItems: "center",
-                marginTop: "6rem",
-                width: "70%",
-                height: "70vh",
+                justifyContent: "space-evenly",
+                padding: "2rem 0rem",
               }}
             >
-              <div ref={printRef}>
-                <SingleNft typeOfGiveaway={location.state} randNum={randNum} />
-              </div>
+              <Navbar isSticky />
+              <div style={{ height: "5vh" }}></div>
               <div
                 style={{
                   display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
+                  flexDirection: "row",
+                  justifyContent: "space-around",
                   alignItems: "center",
-                  height: "25vh",
+                  marginTop: "6rem",
+                  width: "70%",
+                  height: "70vh",
                 }}
               >
-                <button
-                  className="greenButton tapButton2"
-                  style={{ width: "17rem", height: "5rem" }}
+                <div ref={printRef}>
+                  <SingleNft
+                    typeOfGiveaway={location.state}
+                    randNum={randNum}
+                  />
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    height: "25vh",
+                  }}
                 >
-                  <span
-                    style={{
-                      justifyContent: "space-around",
-                      fontFamily: "Hand Drawn Shapes",
-                      fontSize: "32px",
-                    }}
-                    onClick={handleDownloadImage}
+                  <button
+                    className="greenButton tapButton2"
+                    style={{ width: "17rem", height: "5rem" }}
                   >
-                    Mint Your NFT
-                  </span>
-                </button>
-                <button
-                  className="greenButton tapButton2"
-                  style={{ width: "17rem", height: "5rem" }}
-                >
-                  <span
-                    style={{
-                      justifyContent: "space-around",
-                      fontFamily: "Hand Drawn Shapes",
-                      fontSize: "32px",
-                    }}
-                    onClick={colorChange}
+                    <span
+                      style={{
+                        justifyContent: "space-around",
+                        fontFamily: "Hand Drawn Shapes",
+                        fontSize: "32px",
+                      }}
+                      onClick={handleDownloadImage}
+                    >
+                      Mint Your NFT
+                    </span>
+                  </button>
+                  <button
+                    className="greenButton tapButton2"
+                    style={{ width: "17rem", height: "5rem" }}
                   >
-                    Change Color
-                  </span>
-                </button>
+                    <span
+                      style={{
+                        justifyContent: "space-around",
+                        fontFamily: "Hand Drawn Shapes",
+                        fontSize: "32px",
+                      }}
+                      onClick={colorChange}
+                    >
+                      Change Color
+                    </span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        )
+      ) : isMinted ? (
+        <JustMintedNftPage typeOfGiveaway={typeOfGiveaway} type={2} />
+      ) : (
+        <span>not mined their nft</span>
       )
     ) : (
-      <JustMintedNftPage typeOfGiveaway={typeOfGiveaway} type={2} />
+      <div>loading</div>
     )
   ) : (
-    <div>loading</div>
-  ) : <Loader />
+    <Loader />
+  );
 };
 
 export default NftPage;

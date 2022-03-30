@@ -5,11 +5,12 @@ import { useMoralis } from "react-moralis";
 import config from "../config/config";
 import contractABI from "../Contract/contractABI.json";
 import Web3 from "web3";
-import userEvent from "@testing-library/user-event";
+import Loader from "../Loader/Loader";
 
 const ParticipatedGiveaways = () => {
 
   const [participatedGiveaways, setParticipatedGiveaways] = useState([]);
+  const [loading, setLoading] = useState(true);
   const { isAuthenticated, user } = useMoralis();
 
   const getAllGiveaways = async() => {
@@ -25,10 +26,12 @@ const ParticipatedGiveaways = () => {
       const allGiveaways = await contract.methods.getParticipatedGiveaways().call({from: user.get("ethAddress")});
       setParticipatedGiveaways(allGiveaways);
       console.log(allGiveaways);
+      setLoading(false);
 
     }
     catch(error){
-      console.log(error)
+      console.log(error);
+      setLoading(false);
     }
   }
 
@@ -40,8 +43,8 @@ const ParticipatedGiveaways = () => {
   
 
 
-  return (
-    <div className="mainBg2">
+  return <>
+    {<div className="mainBg2">
       <div
         style={{
           display: "flex",
@@ -69,8 +72,9 @@ const ParticipatedGiveaways = () => {
           }}> You've not participated in any giveaway.</span>) :
           participatedGiveaways.map((participatedGiveaway) => (<GiveawayDiv typeOfGiveaway={participatedGiveaway}/>))}
       </div>
-    </div>
-  );
+    </div>}
+    {loading && <Loader/>}
+    </>
 };
 
 export default ParticipatedGiveaways;

@@ -13,7 +13,7 @@ const GiveawayDetails = () => {
   const isProcessing = location.state.isProcessing;
 
   return location.state ? (
-    <div className="mainBg2">
+    <div className="mainBg2" style={{backgroundImage: "none"}}>
       <div
         style={{
           display: "flex",

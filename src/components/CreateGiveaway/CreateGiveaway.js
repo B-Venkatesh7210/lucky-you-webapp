@@ -79,7 +79,7 @@ const CreateGiveaway = () => {
 
   return (
     loading ? <Loader/> : 
-    (<div className="mainBg2">
+    (<div className="mainBg2" style={{backgroundImage: "none"}}>
       <div
         style={{
           display: "flex",

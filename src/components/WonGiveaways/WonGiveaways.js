@@ -5,10 +5,12 @@ import { useMoralis } from "react-moralis";
 import config from "../config/config";
 import contractABI from "../Contract/contractABI.json";
 import Web3 from "web3";
+import Loader from "../Loader/Loader";
 
 const WonGiveaways = () => {
   const [wonGiveaways, setWonGiveaways] = useState([]);
   const { isAuthenticated, user } = useMoralis();
+  const [loading, setLoading] = useState(true);
 
   const getAllGiveaways = async () => {
     let web3js;
@@ -23,8 +25,10 @@ const WonGiveaways = () => {
       const allGiveaways = await contract.methods.getWonGiveaways().call({from: user.get("ethAddress")});
       setWonGiveaways(allGiveaways);
       console.log(allGiveaways);
+      setLoading(false);
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
 
@@ -32,10 +36,11 @@ const WonGiveaways = () => {
     if (isAuthenticated) {
       getAllGiveaways();
     }
+    
   }, [isAuthenticated]);
 
-  return (
-    <div className="mainBg2">
+  return <>
+  {<div className="mainBg2">
       <div
         style={{
           display: "flex",
@@ -56,8 +61,11 @@ const WonGiveaways = () => {
           <GiveawayDiv typeOfGiveaway={wonGiveaway} />
         ))}
       </div>
-    </div>
-  );
+    </div>}
+    {loading && <Loader/>}
+    </>
+  
+  ;
 };
 
 export default WonGiveaways;

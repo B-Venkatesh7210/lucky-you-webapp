@@ -21,6 +21,7 @@ const Navbar = ({ isSticky }) => {
               flexDirection: "row",
               justifyContent: "space-between",
               alignItems: "center",
+              backgroundImage: "none"
             }
           : {}
       }

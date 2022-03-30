@@ -3,10 +3,12 @@ import Navbar from "../Navbar";
 import db from "../../firebaseInit";
 import { useMoralis } from "react-moralis";
 import Grid from "@mui/material/Grid";
+import Loader from "../Loader/Loader";
 
 const YourNfts = () => {
   const [nfts, setNfts] = useState([]);
   const { user, isAuthenticated } = useMoralis();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -15,10 +17,11 @@ const YourNfts = () => {
         .onSnapshot((snapshot) =>
           setNfts(snapshot.docs.map((doc) => doc.data()))
         );
+      setLoading(false);
     }
   }, []);
-  return (
-    <div className="mainBg">
+  return <>
+    {<div className="mainBg">
       <div
         style={{
           display: "flex",
@@ -65,8 +68,9 @@ const YourNfts = () => {
           </Grid>
         </div>
       </div>
-    </div>
-  );
+    </div>}
+    {loading && <Loader/>}
+    </>
 };
 
 export default YourNfts;

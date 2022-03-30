@@ -20,6 +20,7 @@ const client = new NFTStorage({
 
 const NftPage = () => {
   const navigate = useNavigate();
+  const [randNum, setRandNum] = useState();
   const [isMinted, setIsMinted] = useState(false);
   const { account, user } = useMoralis();
   const [loading, setLoading] = useState(false);
@@ -33,8 +34,18 @@ const NftPage = () => {
 
     const createCall = await contract.methods.getNftMinted(uniqueId).call();
     setIsMinted(createCall);
-    console.log(createCall);
+    // console.log(createCall);
   };
+
+  const nftRandBg = () => {
+    return Math.floor(Math.random() * 10) + 1;
+  };
+
+
+  const colorChange = () => {
+    setRandNum(nftRandBg());
+  }
+
 
   useEffect(() => {
     setTypeOfGiveaway(location.state);
@@ -44,6 +55,7 @@ const NftPage = () => {
       location.state.winner.toLowerCase() ===
         user.get("ethAddress").toLowerCase()
     );
+    setRandNum(nftRandBg());
   }, []);
 
   const handleDownloadImage = async () => {
@@ -112,11 +124,11 @@ const NftPage = () => {
                   .then(() => {
                     navigate("/just-minted-nft", { state: typeOfGiveaway });
                     setLoading(false);
-                    
+
                     // location.state.winner
                     // alert("Your NFT is minted successfully.");
                   });
-                  console.log(loading)
+                console.log(loading);
               });
             });
         });
@@ -131,39 +143,50 @@ const NftPage = () => {
     });
   };
 
-  return loading ? <Loader/> : (
-    location.state ? (
-      location.state.winner.toLowerCase() ===
-      user.get("ethAddress").toLowerCase() ? (
-        isMinted ? (
-          <JustMintedNftPage typeOfGiveaway={typeOfGiveaway} type={1} />
-        ) : (
-          <div className="mainBg2">
+  return user ? 
+  loading ? (
+    <Loader />
+  ) : location.state ? (
+    location.state.winner.toLowerCase() ===
+    user.get("ethAddress").toLowerCase() ? (
+      isMinted ? (
+        <JustMintedNftPage typeOfGiveaway={typeOfGiveaway} type={1} />
+      ) : (
+        <div className="mainBg2">
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "space-evenly",
+              padding: "2rem 0rem",
+            }}
+          >
+            <Navbar isSticky />
+            <div style={{ height: "5vh" }}></div>
             <div
               style={{
                 display: "flex",
-                flexDirection: "column",
+                flexDirection: "row",
+                justifyContent: "space-around",
                 alignItems: "center",
-                justifyContent: "space-evenly",
-                padding: "2rem 0rem",
+                marginTop: "6rem",
+                width: "70%",
+                height: "70vh",
               }}
             >
-              <Navbar isSticky />
-              <div style={{ height: "5vh" }}></div>
+              <div ref={printRef}>
+                <SingleNft typeOfGiveaway={location.state} randNum={randNum} />
+              </div>
               <div
                 style={{
                   display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-around",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
                   alignItems: "center",
-                  marginTop: "6rem",
-                  width: "70%",
-                  height: "70vh",
+                  height: "25vh",
                 }}
               >
-                <div ref={printRef}>
-                  <SingleNft typeOfGiveaway={location.state} />
-                </div>
                 <button
                   className="greenButton tapButton2"
                   style={{ width: "17rem", height: "5rem" }}
@@ -179,18 +202,32 @@ const NftPage = () => {
                     Mint Your NFT
                   </span>
                 </button>
+                <button
+                  className="greenButton tapButton2"
+                  style={{ width: "17rem", height: "5rem" }}
+                >
+                  <span
+                    style={{
+                      justifyContent: "space-around",
+                      fontFamily: "Hand Drawn Shapes",
+                      fontSize: "32px",
+                    }}
+                    onClick={colorChange}
+                  >
+                    Change Color
+                  </span>
+                </button>
               </div>
             </div>
           </div>
-        )
-      ) : (
-        <JustMintedNftPage typeOfGiveaway={typeOfGiveaway} type={2} />
+        </div>
       )
     ) : (
-      <div>loading</div>
+      <JustMintedNftPage typeOfGiveaway={typeOfGiveaway} type={2} />
     )
-  )
-  
+  ) : (
+    <div>loading</div>
+  ) : <Loader />
 };
 
 export default NftPage;

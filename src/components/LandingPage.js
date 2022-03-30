@@ -5,6 +5,7 @@ import Ethereum from "../img/Ethereum.png";
 import LINK from "../img/LINK.png";
 import Filecoin from "../img/FIL.png";
 import Sample from "../img/sample.gif"
+import Confetti from "./Confetti";
 
 const Home = () => {
   return (

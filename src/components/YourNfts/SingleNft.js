@@ -1,25 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import LuckyYouLogo from "../../img/LuckyYou Logo.png";
 import EthLogo from "../../img/Ethereum.png";
-import { useEffect } from "react";
-import GiveawayDiv from "../TypesOfGiveawayDivs/GiveawayDiv";
 import moment from "moment";
 import { getEllipsisTxt } from "../../helpers/formatters";
 
-const SingleNft = ({ typeOfGiveaway }) => {
+const SingleNft = ({ typeOfGiveaway, randNum }) => {
+
   const deadline = new Date(typeOfGiveaway.deadline * 1000);
   const amount = typeOfGiveaway.amount / 10 ** 18;
   console.log(deadline);
 
-  const nftRandBg = () => {
-    return Math.floor(Math.random() * 7) + 1;
-  };
-
  
 
+  
   return (
     <div
-      className={`singleNft singleNft${nftRandBg()}`}
+      className={`singleNft singleNft${randNum}`}
       style={{
         width: "30rem",
         height: "30rem",
@@ -27,7 +23,7 @@ const SingleNft = ({ typeOfGiveaway }) => {
         flexDirection: "column",
         justifyContent: "space-between",
         alignItems: "center",
-        padding: "1rem"
+        padding: "1rem",
       }}
     >
       <div

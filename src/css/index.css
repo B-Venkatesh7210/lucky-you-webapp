@@ -22,6 +22,10 @@ code {
   background-color: var(--clr-blue);
   height: 100vh;
   width: 100%;
+  background-image: url("../img/confetti.gif");
+  background-size: 90rem 80rem;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .mainBg2 {
@@ -29,6 +33,10 @@ code {
   height: 100%;
   min-height: 100vh;
   width: 100%;
+  background-image: url("../img/confetti.gif");
+  background-size: 90rem 80rem;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .leftBg {
@@ -184,7 +192,33 @@ code {
   );
 }
 
-.gif{
+.singleNft8 {
+  background: linear-gradient(
+    91.11deg,
+    #1f4037 33.58%,
+    rgba(10, 126, 78, 0.956594) 66.16%,
+    rgba(72, 197, 138, 0.91) 101.14%
+  );
+}
+
+.singleNft9 {
+  background: linear-gradient(
+    91.11deg,
+    #aa4b6b 33.58%,
+    rgba(107, 107, 131, 0.956594) 66.16%,
+    rgba(59, 141, 153, 0.91) 101.14%
+  );
+}
+
+.singleNft10 {
+  background: linear-gradient(
+    89.81deg,
+    #1f1c2c 33.25%,
+    rgba(59, 141, 153, 0.91) 101.32%
+  );
+}
+
+.gif {
   border: 3px solid white;
   box-shadow: -4px -4px 50px -10px rgba(255, 227, 56, 0.75),
     4px 4px 50px -10px rgba(255, 227, 56, 0.75);

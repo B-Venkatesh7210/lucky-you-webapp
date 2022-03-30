@@ -20,57 +20,88 @@ const YourNfts = () => {
       setLoading(false);
     }
   }, []);
-  return <>
-    {<div className="mainBg">
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "space-between",
-          padding: "1rem 2rem",
-        }}
-      >
-        <Navbar isSticky />
-        <div style={{ height: "20vh" }}>
-          {nfts.length === 0 && (
-            <h1
-              style={{
-                color: "white",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                height: "60vh",
-                fontSize: "60px",
-                fontFamily: "Hand Drawn Shapes",
-                letterSpacing: "3px"
-              }}
-            >
-              No NFT created yet
-            </h1>
-          )}
-
-          <Grid container spacing={3} alignItems="center">
-            {nfts.map((nft) => {
-              return (
-                <Grid
-                  item
-                  xs={12}
-                  sm={6}
-                  md={4}
-                  key={nft.url}
-                  style={{ display: "flex", justifyContent: "center" }}
-                >
-                  <img src={nft.url} alt="file" style={{ width: "25rem" }} />;
-                </Grid>
-              );
-            })}
-          </Grid>
+  return (
+    <>
+      {
+        <div className="mainBg">
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "space-between",
+              padding: "1rem 2rem",
+            }}
+          >
+           <Navbar isSticky />
+           
+          </div>
         </div>
-      </div>
-    </div>}
-    {loading && <Loader/>}
+        // <div className="mainBg2" style={{ zIndex: "-2" }}>
+        //   <div
+        //     style={{
+        //       display: "flex",
+        //       flexDirection: "column",
+        //       alignItems: "center",
+        //       justifyContent: "space-between",
+        //       padding: "1rem 2rem",
+        //     }}
+        //   >
+        //     <Navbar isSticky />
+        //     <div style={{ height: "20vh" }}>
+        //       {nfts.length === 0 && (
+        //         <h1
+        //           style={{
+        //             color: "white",
+        //             display: "flex",
+        //             alignItems: "center",
+        //             justifyContent: "center",
+        //             height: "60vh",
+        //             fontSize: "60px",
+        //             fontFamily: "Hand Drawn Shapes",
+        //             letterSpacing: "3px",
+        //           }}
+        //         >
+        //           No NFT created yet
+        //         </h1>
+        //       )}
+        //       <div style={{ height: "10rem" }}></div>
+        //       <div
+        //         style={{
+        //           marginLeft: "6rem",
+        //           display: "flex",
+        //           flexDirection: "row",
+        //           flexWrap: "wrap",
+        //         }}
+        //       >
+        //         {nfts.map((nft) => {
+        //           return (
+        //             <div
+        //               key={nft.url}
+        //               style={{
+        //                 display: "flex",
+        //                 justifyContent: "center",
+        //                 margin: "1rem",
+        //                 height: "30rem",
+        //               }}
+        //             >
+        //               <img
+        //                 src={nft.url}
+        //                 alt="file"
+        //                 style={{ width: "25rem" }}
+        //               />
+        //               ;
+        //             </div>
+        //           );
+        //         })}
+        //       </div>
+        //     </div>
+        //   </div>
+        // </div>
+      }
+      {loading && <Loader />}
     </>
+  );
 };
 
 export default YourNfts;

@@ -22,7 +22,7 @@ const NftPage = () => {
   const navigate = useNavigate();
   const [randNum, setRandNum] = useState();
   const [isMinted, setIsMinted] = useState(false);
-  const { account, user } = useMoralis();
+  const { user } = useMoralis();
   const [loading, setLoading] = useState(false);
   const printRef = React.useRef();
   const [typeOfGiveaway, setTypeOfGiveaway] = useState();

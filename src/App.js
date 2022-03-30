@@ -52,7 +52,7 @@ function App() {
         <Route path="*" element={<Error />}></Route>
       </Routes>
       {/* <Test/> */}
-      {/* <NftPage/> */}
+      {/* <YourNfts/> */}
     </div>
   );
 }

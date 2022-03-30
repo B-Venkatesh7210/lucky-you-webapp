@@ -33,8 +33,62 @@ const YourNfts = () => {
               padding: "1rem 2rem",
             }}
           >
-           <Navbar isSticky />
-           
+            <Navbar isSticky />
+            <div style={{ height: "15vh" }}></div>
+            <div
+              style={{
+                height: "80vh",
+                width: "90%",
+                overflow: "scroll",
+              }}
+            >
+              {nfts.length === 0 && (
+                <h1
+                  style={{
+                    color: "white",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    height: "60vh",
+                    fontSize: "60px",
+                    fontFamily: "Hand Drawn Shapes",
+                    letterSpacing: "3px",
+                  }}
+                >
+                  No NFT created yet
+                </h1>
+              )}
+              <div
+                style={{
+                  marginLeft: "6rem",
+                  overflow: "scroll",
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "start",
+                  flexWrap: "wrap",
+                }}
+              >
+                {nfts.map((nft) => {
+                  return (
+                    <div
+                      key={nft.url}
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        margin: "1rem",
+                      }}
+                    >
+                      <img
+                        src={nft.url}
+                        alt="file"
+                        style={{ width: "25rem", borderRadius: "40px" }}
+                      />
+                      ;
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </div>
         // <div className="mainBg2" style={{ zIndex: "-2" }}>

@@ -134,11 +134,19 @@ const GiveawayDiv = ({ typeOfGiveaway }) => {
               >
                 <span>Time :</span>
                 {typeOfGiveaway.isLive ? (
-                  typeOfGiveaway.isProcessing ? <span className="normalText" style={{fontSize: "30px", marginLeft: "10px"}}>Declaring Winner</span> : 
-                  <Timer
-                    endTime={typeOfGiveaway.deadline}
-                    smallTimer={smallTimer}
-                  />
+                  typeOfGiveaway.isProcessing ? (
+                    <span
+                      className="normalText"
+                      style={{ fontSize: "30px", marginLeft: "10px" }}
+                    >
+                      Declaring Winner
+                    </span>
+                  ) : (
+                    <Timer
+                      endTime={typeOfGiveaway.deadline}
+                      smallTimer={smallTimer}
+                    />
+                  )
                 ) : (
                   <span style={{ marginLeft: "10px" }}>Giveaway has ended</span>
                 )}
@@ -273,11 +281,11 @@ const GiveawayDiv = ({ typeOfGiveaway }) => {
                     fontSize: "24px",
                     color: "black",
                     textAlign: "center",
-                    padding: "0rem 6rem"
-                
+                    padding: "0rem 6rem",
                   }}
                 >
-                  Gelato and Chainlink are working to declare the winner. Please wait for few minutes.
+                  Gelato and Chainlink are working to declare the winner. Please
+                  wait for few minutes.
                 </span>
               ) : participants.includes(
                   user.get("ethAddress") && user.get("ethAddress").toLowerCase()
@@ -418,6 +426,46 @@ const GiveawayDiv = ({ typeOfGiveaway }) => {
                   </span>
                 </button>
                 <div>
+                  {/* {isMinted ? (
+                    typeOfGiveaway.winner.toLowerCase() ===
+                    user.get("ethAddress").toLowerCase() ? (
+                      <button
+                        className="greenButton tapButton2"
+                        style={{ width: "17rem", height: "5rem" }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          navigate("/nft-details", { state: typeOfGiveaway });
+                        }}
+                      >
+                        <span>Your NFT</span>
+                      </button>
+                    ) : (
+                      <button
+                        className="greenButton tapButton2"
+                        style={{ width: "17rem", height: "5rem" }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          navigate("/nft-details", { state: typeOfGiveaway });
+                        }}
+                      >
+                        <span>Their NFT</span>
+                      </button>
+                    )
+                  ) : typeOfGiveaway.winner.toLowerCase() ===
+                    user.get("ethAddress").toLowerCase() ? (
+                    <button
+                      className="greenButton tapButton2"
+                      style={{ width: "17rem", height: "5rem" }}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        navigate("/nft-details", { state: typeOfGiveaway });
+                      }}
+                    >
+                      <span>Your NFT</span>
+                    </button>
+                  ) : (
+                    <div>hello</div>
+                  )} */}
                   <button
                     className="greenButton tapButton2"
                     style={{ width: "17rem", height: "5rem" }}

@@ -29,9 +29,9 @@ const JustMintedNftPage = ({ typeOfGiveaway, type }) => {
     getData();
   }, []);
 
-  // const amount = giveAway.amount / 10 ** 18;
-  // const deadline = moment(giveAway.deadline * 1000).format("MMMM d, YYYY");
-  // const timestamp = moment(giveAway.timestamp * 1000).format("MMMM d, YYYY");
+  const amount = giveAway.amount / 10 ** 18;
+  const deadline = moment(giveAway.deadline * 1000).format("MMMM d, YYYY");
+  const timestamp = moment(giveAway.timestamp * 1000).format("MMMM d, YYYY");
 
   return loading ? (
     <div>Loading</div>
@@ -42,12 +42,11 @@ const JustMintedNftPage = ({ typeOfGiveaway, type }) => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          justifyContent: "space-evenly",
+          justifyContent: "center",
           padding: "2rem 0rem",
         }}
       >
         <Navbar isSticky />
-        <div style={{ height: "5vh" }}></div>
         <div
           style={{
             display: "flex",
@@ -55,172 +54,172 @@ const JustMintedNftPage = ({ typeOfGiveaway, type }) => {
 
             justifyContent: "space-around",
             alignItems: "center",
-            width: "100%",
+            width: "80%",
+            marginTop: "10rem",
           }}
         >
           <div ref={printRef}>
-            {firebaseData && <img src={firebaseData.url} alt="Nft" />}
+            {firebaseData && (
+              <img
+                src={firebaseData.url}
+                alt="Nft"
+                style={{ width: "30rem", borderRadius: "40px" }}
+              />
+            )}
           </div>
-          {/* <div className="metaDataDiv">
-            <span>Creator : {`${giveAway.creator} `}</span>
-            <div>
-              {firebaseData && <img src={firebaseData.url} alt="Nft" />}
-            </div>
+
+          <div
+            className="metaDataDiv"
+            style={{
+              width: "30%",
+              display: "flex",
+              flexDirection: "column",
+              padding: "2rem",
+            }}
+          >
             <div
-              className="metaDataDiv"
               style={{
-                width: "30%",
                 display: "flex",
-                flexDirection: "column",
-                padding: "2rem",
+                flexDirection: "row",
+                alignItems: "baseline",
               }}
             >
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "baseline",
-                }}
-              >
-                <span className="nftWhite" style={{ fontSize: "24px" }}>
-                  Unique ID:
-                </span>
-                <span
-                  className="nftWhite"
-                  style={{ fontSize: "28px", marginLeft: "10px" }}
-                >
-                  {giveAway.uniqueId}
-                </span>
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "baseline",
-                  marginTop: "0.5rem",
-                }}
-              >
-                <span className="nftWhite" style={{ fontSize: "24px" }}>
-                  Creator:
-                </span>
-                <span
-                  className="nftWhite"
-                  style={{ fontSize: "28px", marginLeft: "10px" }}
-                >
-                  {getEllipsisTxt(giveAway.creator)}
-                </span>
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "baseline",
-                  marginTop: "0.5rem",
-                }}
-              >
-                <span className="nftWhite" style={{ fontSize: "24px" }}>
-                  Winner:
-                </span>
-                <span
-                  className="nftWhite"
-                  style={{ fontSize: "28px", marginLeft: "10px" }}
-                >
-                  {getEllipsisTxt(giveAway.winner)}
-                </span>
-              </div>
-
+              <span className="nftWhite" style={{ fontSize: "24px" }}>
+                Unique ID:
+              </span>
               <span
                 className="nftWhite"
-                style={{ fontSize: "24px", marginTop: "0.5rem" }}
+                style={{ fontSize: "28px", marginLeft: "10px" }}
               >
-                Message:
+                {giveAway.uniqueId}
               </span>
-              <span className="nftWhite" style={{ fontSize: "28px" }}>
-                {giveAway.message}
-              </span>
-
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "baseline",
-                  marginTop: "0.5rem",
-                }}
-              >
-                <span className="nftWhite" style={{ fontSize: "24px" }}>
-                  Amount:
-                </span>
-                <span
-                  className="nftWhite"
-                  style={{ fontSize: "28px", marginLeft: "10px" }}
-                >
-                  {amount}
-                </span>
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "baseline",
-                  marginTop: "0.5rem",
-                }}
-              >
-                <span className="nftWhite" style={{ fontSize: "24px" }}>
-                  Started:
-                </span>
-                <span
-                  className="nftWhite"
-                  style={{ fontSize: "28px", marginLeft: "10px" }}
-                >
-                  {timestamp}
-                </span>
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "baseline",
-                  marginTop: "0.5rem",
-                }}
-              >
-                <span className="nftWhite" style={{ fontSize: "24px" }}>
-                  Deadline:
-                </span>
-                <span
-                  className="nftWhite"
-                  style={{ fontSize: "28px", marginLeft: "10px" }}
-                >
-                  {deadline}
-                </span>
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "baseline",
-                  marginTop: "0.5rem",
-                }}
-              >
-                <span className="nftWhite" style={{ fontSize: "24px" }}>
-                  No. of Participants:
-                </span>
-                <span
-                  className="nftWhite"
-                  style={{ fontSize: "28px", marginLeft: "10px" }}
-                >
-                  {giveAway.participants.length}
-                </span>
-              </div>
             </div>
-          </div> */}
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "baseline",
+                marginTop: "0.5rem",
+              }}
+            >
+              <span className="nftWhite" style={{ fontSize: "24px" }}>
+                Creator:
+              </span>
+              <span
+                className="nftWhite"
+                style={{ fontSize: "28px", marginLeft: "10px" }}
+              >
+                {getEllipsisTxt(giveAway.creator)}
+              </span>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "baseline",
+                marginTop: "0.5rem",
+              }}
+            >
+              <span className="nftWhite" style={{ fontSize: "24px" }}>
+                Winner:
+              </span>
+              <span
+                className="nftWhite"
+                style={{ fontSize: "28px", marginLeft: "10px" }}
+              >
+                {getEllipsisTxt(giveAway.winner)}
+              </span>
+            </div>
+
+            <span
+              className="nftWhite"
+              style={{ fontSize: "24px", marginTop: "0.5rem" }}
+            >
+              Message:
+            </span>
+            <span className="nftWhite" style={{ fontSize: "28px" }}>
+              {giveAway.message}
+            </span>
+
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "baseline",
+                marginTop: "0.5rem",
+              }}
+            >
+              <span className="nftWhite" style={{ fontSize: "24px" }}>
+                Amount:
+              </span>
+              <span
+                className="nftWhite"
+                style={{ fontSize: "28px", marginLeft: "10px" }}
+              >
+                {amount}
+              </span>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "baseline",
+                marginTop: "0.5rem",
+              }}
+            >
+              <span className="nftWhite" style={{ fontSize: "24px" }}>
+                Started:
+              </span>
+              <span
+                className="nftWhite"
+                style={{ fontSize: "28px", marginLeft: "10px" }}
+              >
+                {timestamp}
+              </span>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "baseline",
+                marginTop: "0.5rem",
+              }}
+            >
+              <span className="nftWhite" style={{ fontSize: "24px" }}>
+                Deadline:
+              </span>
+              <span
+                className="nftWhite"
+                style={{ fontSize: "28px", marginLeft: "10px" }}
+              >
+                {deadline}
+              </span>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "baseline",
+                marginTop: "0.5rem",
+              }}
+            >
+              <span className="nftWhite" style={{ fontSize: "24px" }}>
+                No. of Participants:
+              </span>
+              <span
+                className="nftWhite"
+                style={{ fontSize: "28px", marginLeft: "10px" }}
+              >
+                {giveAway.participants.length}
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
 };
 export default JustMintedNftPage;
-
-
 
 // import React, { useEffect, useState } from "react";
 // import { useLocation, useNavigate } from "react-router-dom";
@@ -289,4 +288,3 @@ export default JustMintedNftPage;
 //   );
 // };
 // export default JustMintedNftPage;
-

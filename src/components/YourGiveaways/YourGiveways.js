@@ -64,7 +64,7 @@ const YourGiveaways = () => {
             You've not created any giveaway.
           </span>
         ) : (
-          yourGiveaways.map((yourGiveaway) => (
+          yourGiveaways.slice(0).reverse().map((yourGiveaway) => (
             <GiveawayDiv typeOfGiveaway={yourGiveaway} />
           ))
         )}

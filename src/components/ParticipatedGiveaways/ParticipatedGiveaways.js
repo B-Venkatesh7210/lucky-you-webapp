@@ -70,7 +70,7 @@ const ParticipatedGiveaways = () => {
             fontSize: "40px",
             marginTop: "6rem",
           }}> You've not participated in any giveaway.</span>) :
-          participatedGiveaways.map((participatedGiveaway) => (<GiveawayDiv typeOfGiveaway={participatedGiveaway}/>))}
+          participatedGiveaways.slice(0).reverse().map((participatedGiveaway) => (<GiveawayDiv typeOfGiveaway={participatedGiveaway}/>))}
       </div>
     </div>}
     {loading && <Loader/>}

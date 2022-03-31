@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Ethereum from "../img/Ethereum.png";
 import LINK from "../img/LINK.png";
 import Filecoin from "../img/FIL.png";
-import Sample from "../img/sample.gif"
+import Sample from "../img/sample.gif";
 import Confetti from "./Confetti";
 
 const Home = () => {
@@ -55,6 +55,246 @@ const Home = () => {
   );
 };
 
+const Guide = () => {
+  return (
+    <div className="mainBg2" style={{ backgroundImage: "none" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          width: "100%",
+        }}
+      >
+        <span className="whiteText" style={{ fontSize: "100px" }}>
+          Guide
+        </span>
+        <div style={{ height: "5rem" }}></div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+            width: "90%",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "30rem",
+              width: "50%"
+            }}
+          >
+            <span className="guideTitle" style={{ fontSize: "80px" }}>
+              Connecting Wallet
+            </span>
+            <span
+              className="guideText"
+              style={{
+                fontSize: "24px",
+                textAlign: "center",
+                width: "80%",
+                margin: "1rem 0rem",
+              }}
+            >
+              The very first job for every user is to connect their wallet using
+              Metamask and the chain to be used is Polygon Mainnet, only then
+              you can view, create and participate in giveaways.
+            </span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "30rem",
+              width: "40%"
+            }}
+          >
+            <img
+              className="gif gifAnim"
+              alt="gif"
+              src={Sample}
+              style={{ width: "80%", marginRight: "0rem" }}
+            />
+          </div>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+            width: "90%",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "30rem",
+              width: "40%"
+            }}
+          >
+            <img
+              className="gif gifAnim"
+              alt="gif"
+              src={Sample}
+              style={{ width: "80%", marginRight: "0rem" }}
+            />
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "30rem",
+              width: "50%",
+            }}
+          >
+            <span className="guideTitle2" style={{ fontSize: "80px" }}>
+              Creating a Giveaway
+            </span>
+            <span
+              className="guideText"
+              style={{
+                fontSize: "24px",
+                textAlign: "center",
+                width: "80%",
+                margin: "1rem 0rem",
+              }}
+            >
+              Creating a giveaway is very simple. All you have to do is to click
+              on "Create Giveaway", fill in the details, determine the deadline
+              and amount of the giveaway. Boom! your giveaway is Live now
+            </span>
+          </div>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+            width: "90%",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "30rem",
+              width: "50%",
+            }}
+          >
+            <span
+              className="guideTitle"
+              style={{ fontSize: "80px", textAlign: "center" }}
+            >
+              Participating in Giveaway
+            </span>
+            <span
+              className="guideText"
+              style={{
+                fontSize: "24px",
+                textAlign: "center",
+                width: "80%",
+                margin: "1rem 0rem",
+              }}
+            >
+              To participate all you have to do is click on Participate button
+              of a particular giveaway and pay the participation fees which is
+              to be determined by the giveaway amount. After participating you
+              have to wait for the giveaway to end with a positive result.
+            </span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "30rem",
+              width: "40%",
+            }}
+          >
+            <img
+              className="gif gifAnim"
+              alt="gif"
+              src={Sample}
+              style={{ width: "80%", marginRight: "0rem" }}
+            />
+          </div>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+            width: "90%",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "30rem",
+              width: "40%",
+            }}
+          >
+            <img
+              className="gif gifAnim"
+              alt="gif"
+              src={Sample}
+              style={{ width: "80%", marginRight: "0rem" }}
+            />
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "30rem",
+              width: "50%",
+            }}
+          >
+            <span className="guideTitle2" style={{ fontSize: "80px" }}>
+              Minting NFT
+            </span>
+            <span
+              className="guideText"
+              style={{
+                fontSize: "24px",
+                textAlign: "center",
+                width: "80%",
+                margin: "1rem 0rem",
+              }}
+            >
+              When the giveaway ends, the winners has the choice to mint their
+              NFT of their favourite colour and flex it to other participants.
+              The other participants can also see the minted NFT of the winner
+              of a particualr giveaway.
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const TechnologiesUsed = () => {
   return (
@@ -66,16 +306,17 @@ const TechnologiesUsed = () => {
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
+        backgroundImage: "none",
       }}
     >
-      <span className="whiteText" style={{ fontSize: "80px" }}>
+      <span className="whiteText" style={{ fontSize: "100px" }}>
         Technologies Used
       </span>
     </div>
   );
 };
 
-const Guide = () => {
+const Technologies = () => {
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <div className="leftBg">
@@ -147,9 +388,12 @@ const Guide = () => {
               alignItems: "center",
             }}
           >
-            <img 
-            className="gif"
-            alt="gif" src={Sample} style={{width: "90%", marginRight: "8rem"}}/>
+            <img
+              className="gif"
+              alt="gif"
+              src={Sample}
+              style={{ width: "90%", marginRight: "8rem" }}
+            />
           </div>
         </div>
       </div>
@@ -172,9 +416,12 @@ const Guide = () => {
               alignItems: "center",
             }}
           >
-            <img 
-            className="gif"
-            alt="gif" src={Sample} style={{width: "90%", marginLeft: "8rem"}}/>
+            <img
+              className="gif"
+              alt="gif"
+              src={Sample}
+              style={{ width: "90%", marginLeft: "8rem" }}
+            />
           </div>
           <div
             style={{
@@ -295,9 +542,12 @@ const Guide = () => {
               alignItems: "center",
             }}
           >
-            <img 
-            className="gif"
-            alt="gif" src={Sample} style={{width: "90%", marginRight: "8rem"}}/>
+            <img
+              className="gif"
+              alt="gif"
+              src={Sample}
+              style={{ width: "90%", marginRight: "8rem" }}
+            />
           </div>
         </div>
       </div>
@@ -320,9 +570,12 @@ const Guide = () => {
               alignItems: "center",
             }}
           >
-            <img 
-            className="gif"
-            alt="gif" src={Sample} style={{width: "90%", marginLeft: "8rem"}}/>
+            <img
+              className="gif"
+              alt="gif"
+              src={Sample}
+              style={{ width: "90%", marginLeft: "8rem" }}
+            />
           </div>
           <div
             style={{
@@ -387,8 +640,9 @@ function LandingPage() {
   return (
     <div>
       <Home />
-      <TechnologiesUsed />
       <Guide />
+      <TechnologiesUsed />
+      <Technologies />
     </div>
   );
 }

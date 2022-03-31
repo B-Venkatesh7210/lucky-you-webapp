@@ -57,7 +57,7 @@ const WonGiveaways = () => {
             fontSize: "60px",
             marginTop: "6rem",
           }}>You've not won any giveaway.</span>) :
-          wonGiveaways.map((wonGiveaway) => (
+          wonGiveaways.slice(0).reverse().map((wonGiveaway) => (
           <GiveawayDiv typeOfGiveaway={wonGiveaway} />
         ))}
       </div>

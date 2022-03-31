@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {useNavigate} from "react-router-dom"
 import EthLogo from "../../img/Ethereum.png";
 import Emoji from "../../img/emoji.png";
@@ -76,10 +76,10 @@ const CreateGiveaway = () => {
     }
 
   };
+  
 
-  return (
-    loading ? <Loader/> : 
-    (<div className="mainBg2" style={{backgroundImage: "none"}}>
+  return <>
+    {<div className="mainBg2" style={{backgroundImage: "none"}}>
       <div
         style={{
           display: "flex",
@@ -294,8 +294,9 @@ const CreateGiveaway = () => {
           </button>
         </form>
       </div>
-    </div>)
-  );
+    </div>}
+    {loading && <Loader/>}
+  </>
 };
 
 export default CreateGiveaway;

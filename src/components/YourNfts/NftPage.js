@@ -12,6 +12,7 @@ import config from "../config/config.js";
 import { NFTStorage, File } from "nft.storage";
 import JustMintedNftPage from "./justMintedNftPage";
 import Loader from "../Loader/Loader";
+import NotMintedNftPage from "./NotMintedNftPage";
 
 const client = new NFTStorage({
   token:
@@ -29,11 +30,13 @@ const NftPage = () => {
   let location = useLocation();
 
   const getNftMinted = async (uniqueId) => {
+    setLoading(true);
     let web3 = new Web3(window.web3.currentProvider);
     const contract = new web3.eth.Contract(nftABI, config.nftContractAddress);
 
     const createCall = await contract.methods.getNftMinted(uniqueId).call();
     setIsMinted(createCall);
+    setLoading(false);
     // console.log(isMinted);
   };
 
@@ -49,12 +52,8 @@ const NftPage = () => {
     setTypeOfGiveaway(location.state);
     console.log(location.state);
     getNftMinted(location.state.uniqueId);
-    console.log(
-      location.state.winner.toLowerCase() ===
-        user.get("ethAddress").toLowerCase()
-    );
     setRandNum(nftRandBg());
-  }, []);
+  }, [isMinted]);
 
   const handleDownloadImage = async () => {
     setLoading(true);
@@ -120,7 +119,8 @@ const NftPage = () => {
                     url: url,
                   })
                   .then(() => {
-                    navigate("/just-minted-nft", { state: typeOfGiveaway });
+                    navigate("/nft-details", { state: typeOfGiveaway });
+                    setIsMinted(true);
                     setLoading(false);
 
                     // location.state.winner
@@ -148,7 +148,7 @@ const NftPage = () => {
       location.state.winner.toLowerCase() ===
       user.get("ethAddress").toLowerCase() ? (
         isMinted ? (
-          <JustMintedNftPage typeOfGiveaway={typeOfGiveaway} type={1} />
+          <JustMintedNftPage typeOfGiveaway={typeOfGiveaway} />
         ) : (
           <div className="mainBg2">
             <div
@@ -224,9 +224,9 @@ const NftPage = () => {
           </div>
         )
       ) : isMinted ? (
-        <JustMintedNftPage typeOfGiveaway={typeOfGiveaway} type={2} />
+        <JustMintedNftPage typeOfGiveaway={typeOfGiveaway} />
       ) : (
-        <span>not mined their nft</span>
+        <NotMintedNftPage/>
       )
     ) : (
       <div>loading</div>

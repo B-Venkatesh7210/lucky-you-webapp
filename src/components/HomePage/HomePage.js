@@ -7,9 +7,11 @@ import config from "../config/config";
 import contractABI from "../Contract/contractABI.json";
 import Web3 from "web3";
 import { useMoralis } from "react-moralis";
+import Loader from "../Loader/Loader";
 
 const HomePage = () => {
   const [liveGiveaways, setLiveGiveaways] = useState([]);
+  const [loading, setLoading] = useState(true);
   const { isAuthenticated, user } = useMoralis();
 
   const getAllGiveaways = async () => {
@@ -25,8 +27,10 @@ const HomePage = () => {
       const allGiveaways = await contract.methods.getAllGiveaways().call();
       setLiveGiveaways(allGiveaways);
       console.log(allGiveaways);
+      setLoading(false);
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
 
@@ -36,8 +40,8 @@ const HomePage = () => {
     }
   }, [isAuthenticated]);
 
-  return (
-    <div className="mainBg2">
+  return <>
+    {<div className="mainBg2">
       <div
         style={{
           display: "flex",
@@ -126,7 +130,7 @@ const HomePage = () => {
                 No Giveaway is LIVE
               </span>
             ) : (
-              liveGiveaways.map((liveGiveaway) => (
+              liveGiveaways.slice(0).reverse().map((liveGiveaway) => (
                 <GiveawayDiv typeOfGiveaway={liveGiveaway} />
               ))
             )}
@@ -141,8 +145,9 @@ const HomePage = () => {
           </span>
         )}
       </div>
-    </div>
-  );
+    </div>}
+    {loading && <Loader/>}
+  </>
 };
 
 export default HomePage;

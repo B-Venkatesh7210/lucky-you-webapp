@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import LuckyYouLogo from "../../img/LuckyYou Logo.png";
 import EthLogo from "../../img/Ethereum.png";
+import Moment from "react-moment"
 import moment from "moment";
 import { getEllipsisTxt } from "../../helpers/formatters";
 
@@ -93,7 +94,8 @@ const SingleNft = ({ typeOfGiveaway, randNum }) => {
           Date:
         </span>
         <span className="nftWhite" style={{ fontSize: "40px" }}>
-          {moment(deadline).format("MMMM d, YYYY")}
+        <Moment date={deadline} format="DD MMM YYYY">
+            </Moment>
         </span>
       </div>
     </div>

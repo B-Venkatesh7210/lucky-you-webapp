@@ -37,6 +37,7 @@ code {
   background-size: 90rem 80rem;
   background-repeat: no-repeat;
   background-position: top;
+  background-position-y: -10rem;
 }
 
 .leftBg {
@@ -92,6 +93,13 @@ code {
   font-weight: 500;
   -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: black;
+}
+
+.guideText {
+  font-family: 'Josefin Sans', cursive;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: white;
 }
 
 .button {
@@ -232,4 +240,49 @@ code {
   box-shadow: -4px -4px 50px -10px rgba(255, 227, 56, 0.75),
     4px 4px 50px -10px rgba(255, 227, 56, 0.75);
   border-radius: 40px;
+}
+
+.gifAnim{
+  transform: translateY(0px);
+  animation: floatGif 10s ease-in-out infinite
+}
+
+@keyframes floatGif {
+  0%, 100% {
+    transform: translateY(40px);
+  }
+  50% {
+    transform: translateY(-40px);
+  }
+  
+}
+
+.guideTitle{
+  font-family: Hand Drawn Shapes;
+  color: white;
+  animation: colorChange2 2s ease-in-out infinite;
+}
+
+@keyframes colorChange2 {
+  0%, 100%{
+    color: white;
+  }
+  50%{
+    color: var(--clr-yellow-1);
+  }
+}
+
+.guideTitle2{
+  font-family: Hand Drawn Shapes;
+  color: var(--clr-yellow-1);
+  animation: colorChange3 2s ease-in-out infinite;
+}
+
+@keyframes colorChange3 {
+  0%, 100%{
+    color: var(--clr-yellow-1);
+  }
+  50%{
+    color: white;
+  }
 }

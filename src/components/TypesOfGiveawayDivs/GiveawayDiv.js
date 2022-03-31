@@ -20,7 +20,6 @@ const GiveawayDiv = ({ typeOfGiveaway }) => {
   const smallTimer = true;
   const amount = typeOfGiveaway.amount / 10 ** 18;
   const participationFee = typeOfGiveaway.participationFee / 10 ** 18;
-  const socialLinkHref = "https://" + typeOfGiveaway.socialLink;
 
   const { user, isAuthenticated } = useMoralis();
 
@@ -67,8 +66,6 @@ const GiveawayDiv = ({ typeOfGiveaway }) => {
   };
 
   useEffect(() => {
-    console.log(typeOfGiveaway.participants);
-    // console.log(user.get("ethAddress"));
 
     for (var i = 0; i < typeOfGiveaway.participants.length; i++) {
       if (typeOfGiveaway.participants[i])
@@ -76,7 +73,6 @@ const GiveawayDiv = ({ typeOfGiveaway }) => {
     }
     setParticipants(newArray);
     setIsMinted(getNftMinted());
-    console.log(newArray);
   }, []);
 
   const getNftMinted = async () => {
@@ -86,7 +82,6 @@ const GiveawayDiv = ({ typeOfGiveaway }) => {
     const createCall = await contract.methods
       .getNftMinted(typeOfGiveaway.uniqueId)
       .call();
-    console.log(createCall);
     return createCall;
   };
 
@@ -168,6 +163,9 @@ const GiveawayDiv = ({ typeOfGiveaway }) => {
                 flexDirection: "column",
                 alignItems: "center",
                 width: "70%",
+                wordBreak: "break-word",
+                margin: "1rem 0rem"
+              
               }}
             >
               <span
@@ -176,20 +174,30 @@ const GiveawayDiv = ({ typeOfGiveaway }) => {
               >
                 {typeOfGiveaway.message}
               </span>
-              <a
-                rel="noreferrer"
-                href={socialLinkHref}
-                target="_blank"
-                className="normalText"
+              <div
                 style={{
-                  fontSize: "30px",
-                  color: "blue",
-                  textDecoration: "underline",
-                  cursor: "pointer",
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  width: "100%"
                 }}
               >
-                {typeOfGiveaway.socialLink}
-              </a>
+                <a
+                  rel="noreferrer"
+                  href={typeOfGiveaway.socialLink}
+                  target="_blank"
+                  className="normalText"
+                  style={{
+                    fontSize: "30px",
+                    color: "blue",
+                    textDecoration: "underline",
+                    cursor: "pointer",
+                  }}
+                >
+                  {typeOfGiveaway.socialLink}
+                </a>
+              </div>
             </div>
           </div>
           <div
@@ -314,7 +322,7 @@ const GiveawayDiv = ({ typeOfGiveaway }) => {
                 </button>
               ) : (
                 <button
-                  className="greenButton tapButton"
+                  className="greenButton tapButton2"
                   style={{ width: "17rem", height: "4rem" }}
                   onClick={(e) => {
                     e.stopPropagation();
@@ -426,46 +434,6 @@ const GiveawayDiv = ({ typeOfGiveaway }) => {
                   </span>
                 </button>
                 <div>
-                  {/* {isMinted ? (
-                    typeOfGiveaway.winner.toLowerCase() ===
-                    user.get("ethAddress").toLowerCase() ? (
-                      <button
-                        className="greenButton tapButton2"
-                        style={{ width: "17rem", height: "5rem" }}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          navigate("/nft-details", { state: typeOfGiveaway });
-                        }}
-                      >
-                        <span>Your NFT</span>
-                      </button>
-                    ) : (
-                      <button
-                        className="greenButton tapButton2"
-                        style={{ width: "17rem", height: "5rem" }}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          navigate("/nft-details", { state: typeOfGiveaway });
-                        }}
-                      >
-                        <span>Their NFT</span>
-                      </button>
-                    )
-                  ) : typeOfGiveaway.winner.toLowerCase() ===
-                    user.get("ethAddress").toLowerCase() ? (
-                    <button
-                      className="greenButton tapButton2"
-                      style={{ width: "17rem", height: "5rem" }}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        navigate("/nft-details", { state: typeOfGiveaway });
-                      }}
-                    >
-                      <span>Your NFT</span>
-                    </button>
-                  ) : (
-                    <div>hello</div>
-                  )} */}
                   <button
                     className="greenButton tapButton2"
                     style={{ width: "17rem", height: "5rem" }}

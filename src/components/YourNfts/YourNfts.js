@@ -36,6 +36,7 @@ const YourNfts = () => {
             <Navbar isSticky />
             <div style={{ height: "15vh" }}></div>
             <div
+              className="scrollYourNft"
               style={{
                 height: "80vh",
                 width: "90%",
@@ -61,7 +62,6 @@ const YourNfts = () => {
               <div
                 style={{
                   marginLeft: "6rem",
-                  overflow: "scroll",
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "start",
@@ -81,7 +81,7 @@ const YourNfts = () => {
                       <img
                         src={nft.url}
                         alt="file"
-                        style={{ width: "25rem", borderRadius: "40px" }}
+                        style={{ width: "20rem", borderRadius: "40px" }}
                       />
                       ;
                     </div>

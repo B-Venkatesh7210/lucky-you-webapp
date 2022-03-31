@@ -218,6 +218,15 @@ code {
   );
 }
 
+.scrollYourNft {
+  height: 80vh;
+  width: 90%;
+  overflow: scroll;
+}
+.scrollYourNft::-webkit-scrollbar {
+  display: none;
+}
+
 .gif {
   border: 3px solid white;
   box-shadow: -4px -4px 50px -10px rgba(255, 227, 56, 0.75),

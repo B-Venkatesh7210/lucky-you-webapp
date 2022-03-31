@@ -11,7 +11,7 @@ const JustMintedNftPage = ({ typeOfGiveaway, type }) => {
   const [firebaseData, setfirebaseData] = useState();
   const [giveAway, setGiveAway] = useState(typeOfGiveaway);
   const [loading, setLoading] = useState(true);
-  // user.ethAddress == +
+  
   const getData = async () => {
     const data = await db
       .collection("nfts")
@@ -24,7 +24,6 @@ const JustMintedNftPage = ({ typeOfGiveaway, type }) => {
   };
   useEffect(() => {
     setLoading(true);
-    console.log(type);
     location.state ? setGiveAway(location.state) : setGiveAway(typeOfGiveaway);
     getData();
   }, []);

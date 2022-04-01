@@ -18,7 +18,7 @@ const CreateGiveaway = () => {
     message: "",
     socialLink: "",
     deadline: "",
-    amount: "",
+    amount: "", 
   });
 
   const createGiveawayFrontend = async (e) => {

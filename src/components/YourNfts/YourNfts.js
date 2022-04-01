@@ -3,6 +3,7 @@ import Navbar from "../Navbar";
 import db from "../../firebaseInit";
 import { useMoralis } from "react-moralis";
 import Loader from "../Loader/Loader";
+import config from "../config/config";
 
 const YourNfts = () => {
   const [nfts, setNfts] = useState([]);
@@ -67,29 +68,40 @@ const YourNfts = () => {
                   flexWrap: "wrap",
                 }}
               >
-                {nfts.map((nft) => {
+                {nfts.slice(0).reverse().map((nft) => {
+                  const nftLink =
+                    "https://rinkeby.rarible.com/token/" +
+                    config.nftContractAddress +
+                    ":" +
+                    nft.uniqueId +
+                    "?tab=details";
+
                   return (
-                    <div
-                      key={nft.url}
-                      style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        margin: "1rem",
-                      }}
-                    >
-                      <img
-                        src={nft.url}
-                        alt="file"
-                        style={{ width: "20rem", borderRadius: "40px" }}
-                      />
-                      ;
-                    </div>
+                    <a rel="noreferrer" href={nftLink} target="_blank">
+                      <div
+                        key={nft.url}
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          margin: "1rem",
+                          cursor: "pointer"
+                        }}
+                      >
+                        <img
+                          className="nftHover"
+                          src={nft.url}
+                          alt="file"
+                          style={{ width: "20rem", borderRadius: "40px" }}
+                        />
+                      </div>
+                    </a>
                   );
                 })}
               </div>
             </div>
           </div>
-        </div>}
+        </div>
+      }
       {loading && <Loader />}
     </>
   );

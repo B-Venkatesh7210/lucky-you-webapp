@@ -41,7 +41,7 @@ const NftPage = () => {
   };
 
   const nftRandBg = () => {
-    return Math.floor(Math.random() * 10) + 1;
+    return Math.floor(Math.random() * 15) + 1;
   };
 
   const colorChange = () => {
@@ -232,7 +232,7 @@ const NftPage = () => {
       <div>loading</div>
     )
   ) : (
-    <Loader />
+    <Loader/>
   );
 };
 

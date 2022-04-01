@@ -66,13 +66,12 @@ const GiveawayDiv = ({ typeOfGiveaway }) => {
   };
 
   useEffect(() => {
-
     for (var i = 0; i < typeOfGiveaway.participants.length; i++) {
       if (typeOfGiveaway.participants[i])
         newArray[i] = typeOfGiveaway.participants[i].toLowerCase();
     }
     setParticipants(newArray);
-    setIsMinted(getNftMinted());
+    getNftMinted();
   }, []);
 
   const getNftMinted = async () => {
@@ -82,7 +81,7 @@ const GiveawayDiv = ({ typeOfGiveaway }) => {
     const createCall = await contract.methods
       .getNftMinted(typeOfGiveaway.uniqueId)
       .call();
-    return createCall;
+    setIsMinted(createCall);
   };
 
   return loading ? (
@@ -164,8 +163,7 @@ const GiveawayDiv = ({ typeOfGiveaway }) => {
                 alignItems: "center",
                 width: "70%",
                 wordBreak: "break-word",
-                margin: "1rem 0rem"
-              
+                margin: "1rem 0rem",
               }}
             >
               <span
@@ -180,7 +178,7 @@ const GiveawayDiv = ({ typeOfGiveaway }) => {
                   flexDirection: "row",
                   justifyContent: "center",
                   alignItems: "center",
-                  width: "100%"
+                  width: "100%",
                 }}
               >
                 <a
@@ -433,7 +431,67 @@ const GiveawayDiv = ({ typeOfGiveaway }) => {
                     </span>
                   </span>
                 </button>
-                <div>
+
+                {typeOfGiveaway.winner.toLowerCase() ===
+                user.get("ethAddress").toLowerCase() ? (
+                  isMinted ? (
+                    <button
+                      className="greenButton tapButton2"
+                      style={{ width: "17rem", height: "5rem" }}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        navigate("/nft-details", { state: typeOfGiveaway });
+                      }}
+                    >
+                      <span
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          fontFamily: "Hand Drawn Shapes",
+                          fontSize: "32px",
+                          color: "black",
+                        }}
+                      >
+                        Your NFT
+                        <img
+                          src={Emoji}
+                          alt="Emoji"
+                          style={{ width: "18%", marginLeft: "0.5rem" }}
+                        ></img>
+                      </span>
+                    </button>
+                  ) : (
+                    <button
+                      className="greenButton tapButton2"
+                      style={{ width: "17rem", height: "5rem" }}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        navigate("/nft-details", { state: typeOfGiveaway });
+                      }}
+                    >
+                      <span
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          fontFamily: "Hand Drawn Shapes",
+                          fontSize: "32px",
+                          color: "black",
+                        }}
+                      >
+                        Mint Your NFT
+                        <img
+                          src={Emoji}
+                          alt="Emoji"
+                          style={{ width: "18%", marginLeft: "0.5rem" }}
+                        ></img>
+                      </span>
+                    </button>
+                  )
+                ) : isMinted ? (
                   <button
                     className="greenButton tapButton2"
                     style={{ width: "17rem", height: "5rem" }}
@@ -453,12 +511,7 @@ const GiveawayDiv = ({ typeOfGiveaway }) => {
                         color: "black",
                       }}
                     >
-                      {typeOfGiveaway.winner.toLowerCase() ===
-                      user.get("ethAddress").toLowerCase() ? (
-                        <span>Your NFT</span>
-                      ) : (
-                        isMinted && <span>Their NFT</span>
-                      )}
+                      Their NFT
                       <img
                         src={Emoji}
                         alt="Emoji"
@@ -466,7 +519,9 @@ const GiveawayDiv = ({ typeOfGiveaway }) => {
                       ></img>
                     </span>
                   </button>
-                </div>
+                ) : (
+                  <></>
+                )}
               </div>
             )}
           </div>

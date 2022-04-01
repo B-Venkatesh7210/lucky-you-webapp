@@ -49,8 +49,7 @@ const JustMintedNftPage = ({ typeOfGiveaway }) => {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              justifyContent: "center",
-              padding: "2rem 0rem",
+              justifyContent: "center"
             }}
           >
             <Navbar isSticky />
@@ -68,6 +67,7 @@ const JustMintedNftPage = ({ typeOfGiveaway }) => {
               <div ref={printRef}>
                 {firebaseData && (
                   <img
+                    className="singleNft"
                     src={firebaseData.url}
                     alt="Nft"
                     style={{ width: "30rem", borderRadius: "40px" }}
@@ -81,7 +81,7 @@ const JustMintedNftPage = ({ typeOfGiveaway }) => {
                   width: "30%",
                   display: "flex",
                   flexDirection: "column",
-                  padding: "2rem",
+                  padding: "1.5rem 1rem",
                 }}
               >
                 <div
@@ -246,7 +246,7 @@ const JustMintedNftPage = ({ typeOfGiveaway }) => {
                   </span>
                 </div>
                 <button
-                  className="button tapButton"
+                  className="greenButton tapButton2"
                   style={{
                     fontSize: "28px",
                     wordBreak: "break-word",
@@ -254,10 +254,9 @@ const JustMintedNftPage = ({ typeOfGiveaway }) => {
                     flexDirection: "row",
                     justifyContent: "center",
                     marginTop: "1rem",
-                    marginLeft: "3rem",
+                    marginLeft: "4rem",
                     height: "3rem",
                     width: "12rem",
-                    backgroundColor: "rgb(204,204,0)",
                   }}
                 >
                   <a

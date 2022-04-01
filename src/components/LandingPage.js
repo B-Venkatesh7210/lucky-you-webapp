@@ -5,7 +5,10 @@ import Ethereum from "../img/Ethereum.png";
 import LINK from "../img/LINK.png";
 import Filecoin from "../img/FIL.png";
 import Sample from "../img/sample.gif";
-import Confetti from "./Confetti";
+import LinkedIn from "../img/LinkedIN_black.png";
+import Github from "../img/Github_black.png";
+import Twitter from "../img/Twitter_black.png";
+import Youtube from "../img/Youtube_black.png";
 
 const Home = () => {
   return (
@@ -86,7 +89,7 @@ const Guide = () => {
               justifyContent: "center",
               alignItems: "center",
               height: "30rem",
-              width: "50%"
+              width: "50%",
             }}
           >
             <span className="guideTitle" style={{ fontSize: "80px" }}>
@@ -113,7 +116,7 @@ const Guide = () => {
               justifyContent: "center",
               alignItems: "center",
               height: "30rem",
-              width: "40%"
+              width: "40%",
             }}
           >
             <img
@@ -140,7 +143,7 @@ const Guide = () => {
               justifyContent: "center",
               alignItems: "center",
               height: "30rem",
-              width: "40%"
+              width: "40%",
             }}
           >
             <img
@@ -636,6 +639,58 @@ const Technologies = () => {
   );
 };
 
+const Footer = () => {
+  return (
+    <div
+      className="mainBg"
+      style={{
+        backgroundImage: "none",
+        height: "20vh",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      <div style={{ height: "12vh" }}></div>
+      <div
+        style={{
+          width: "100%",
+          height: "8vh",
+          background: "#f9e286",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <div
+          style={{
+            width: "50%",
+            height: "8vh",
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-evenly",
+            alignItems: "center",
+          }}
+        >
+          <a rel="noreferrer" href="" target="_blank"> 
+          <img alt="Youtube" src={Youtube} style={{width: "2.5rem"}}/>
+          </a>
+          {/* //Youtube Link to be added */}
+          <a rel="noreferrer" href="https://github.com/B-Venkatesh7210/lucky-you-webapp" target="_blank"> 
+          <img alt="Github" src={Github} style={{width: "2.5rem"}}/>
+          </a>
+          <a rel="noreferrer" href="https://www.linkedin.com/in/venkatesh-venmus-b0b839121/" target="_blank"> 
+          <img alt="LinkedIn" src={LinkedIn} style={{width: "2.5rem"}}/>
+          </a>
+          <a rel="noreferrer" href="https://twitter.com/RohitDuhan15" target="_blank"> 
+          <img alt="Twitter" src={Twitter} style={{width: "2.5rem"}}/>
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 function LandingPage() {
   return (
     <div>
@@ -643,6 +698,7 @@ function LandingPage() {
       <Guide />
       <TechnologiesUsed />
       <Technologies />
+      <Footer />
     </div>
   );
 }

@@ -5,12 +5,17 @@ import Ethereum from "../img/Ethereum.png";
 import Gelato from "../img/Gelato.png";
 import LINK from "../img/LINK.png";
 import Filecoin from "../img/FIL.png";
-import Sample from "../img/sample.gif";
 import LinkedIn from "../img/LinkedIN_black.png";
 import Github from "../img/Github_black.png";
 import Twitter from "../img/Twitter_black.png";
 import Youtube from "../img/Youtube_black.png";
 import PoweredByPolygon from "../img/poweredByPolygon.png";
+import ConnectWalletGif from "../img/Connect Wallet.gif";
+import CreatingGiveawayGif from "../img/Creating Giveaway.gif";
+import ParticipatingGiveawayGif from "../img/Participating Giveaway.gif";
+import MintingGif from "../img/Minting NFT.gif";
+import GelatoGif from "../img/Gelato.gif";
+import ChainLinkGif from "../img/Chainlink.gif";
 
 const Home = () => {
   return (
@@ -124,8 +129,8 @@ const Guide = () => {
           >
             <img
               className="gif gifAnim"
-              alt="gif"
-              src={Sample}
+              alt="Connecting Wallet gif"
+              src={ConnectWalletGif}
               style={{ width: "80%", marginRight: "0rem" }}
             />
           </div>
@@ -151,8 +156,8 @@ const Guide = () => {
           >
             <img
               className="gif gifAnim"
-              alt="gif"
-              src={Sample}
+              alt="Creating Giveaway gif"
+              src={CreatingGiveawayGif}
               style={{ width: "80%", marginRight: "0rem" }}
             />
           </div>
@@ -236,8 +241,8 @@ const Guide = () => {
           >
             <img
               className="gif gifAnim"
-              alt="gif"
-              src={Sample}
+              alt="Participating Giveaway gif"
+              src={ParticipatingGiveawayGif}
               style={{ width: "80%", marginRight: "0rem" }}
             />
           </div>
@@ -263,8 +268,8 @@ const Guide = () => {
           >
             <img
               className="gif gifAnim"
-              alt="gif"
-              src={Sample}
+              alt="Minting NFT gif"
+              src={MintingGif}
               style={{ width: "80%", marginRight: "0rem" }}
             />
           </div>
@@ -396,8 +401,8 @@ const Technologies = () => {
           >
             <img
               className="gif"
-              alt="gif"
-              src={Sample}
+              alt="Polygon gif"
+              src={ConnectWalletGif}
               style={{ width: "90%", marginRight: "8rem" }}
             />
           </div>
@@ -424,8 +429,8 @@ const Technologies = () => {
           >
             <img
               className="gif"
-              alt="gif"
-              src={Sample}
+              alt="Gelato gif"
+              src={GelatoGif}
               style={{ width: "90%", marginLeft: "8rem" }}
             />
           </div>
@@ -552,8 +557,8 @@ const Technologies = () => {
           >
             <img
               className="gif"
-              alt="gif"
-              src={Sample}
+              alt="Chainlink gif"
+              src={ChainLinkGif}
               style={{ width: "90%", marginRight: "8rem" }}
             />
           </div>
@@ -580,8 +585,8 @@ const Technologies = () => {
           >
             <img
               className="gif"
-              alt="gif"
-              src={Sample}
+              alt="Filecoin gif"
+              src={MintingGif}
               style={{ width: "90%", marginLeft: "8rem" }}
             />
           </div>

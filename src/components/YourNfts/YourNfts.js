@@ -69,17 +69,19 @@ const YourNfts = () => {
                 }}
               >
                 {nfts.slice(0).reverse().map((nft) => {
-                  const nftLink =
-                    "https://rinkeby.rarible.com/token/" +
-                    config.nftContractAddress +
-                    ":" +
-                    nft.uniqueId +
-                    "?tab=details";
 
                   return (
-                    <a rel="noreferrer" href={nftLink} target="_blank">
+                    
                       <div
                         key={nft.url}
+                        onClick={() => {
+                      const nftLink =
+                        "https://opensea.io/assets/matic/" +
+                        config.nftContractAddress +
+                        "/" +
+                        nft.tokenId;
+                        window.open(nftLink, "_blank")
+                    }}
                         style={{
                           display: "flex",
                           justifyContent: "center",
@@ -94,7 +96,7 @@ const YourNfts = () => {
                           style={{ width: "20rem", borderRadius: "40px" }}
                         />
                       </div>
-                    </a>
+                  
                   );
                 })}
               </div>

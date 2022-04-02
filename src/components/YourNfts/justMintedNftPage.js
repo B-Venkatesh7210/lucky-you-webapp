@@ -33,12 +33,6 @@ const JustMintedNftPage = ({ typeOfGiveaway }) => {
   const amount = parseInt(giveAway.amount) / 10 ** 18;
   const deadline = new Date(typeOfGiveaway.deadline * 1000);
   const timestamp = new Date(typeOfGiveaway.timestamp * 1000);
-  const nftLink =
-    "https://rinkeby.rarible.com/token/" +
-    config.nftContractAddress +
-    ":" +
-    typeOfGiveaway.uniqueId +
-    "?tab=details";
 
   return (
     <>
@@ -49,7 +43,7 @@ const JustMintedNftPage = ({ typeOfGiveaway }) => {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              justifyContent: "center"
+              justifyContent: "center",
             }}
           >
             <Navbar isSticky />
@@ -259,10 +253,16 @@ const JustMintedNftPage = ({ typeOfGiveaway }) => {
                     width: "12rem",
                   }}
                 >
-                  <a
-                    rel="noreferrer"
-                    href={nftLink}
-                    target="_blank"
+
+                  <div
+                    onClick={() => {
+                      const nftLink =
+                        "https://opensea.io/assets/matic/" +
+                        config.nftContractAddress +
+                        "/" +
+                        firebaseData.tokenId;
+                        window.open(nftLink, "_blank")
+                    }}
                     className="normalText"
                     style={{
                       fontSize: "28px",
@@ -275,7 +275,7 @@ const JustMintedNftPage = ({ typeOfGiveaway }) => {
                     }}
                   >
                     Jump to NFT
-                  </a>
+                  </div>
                 </button>
               </div>
             </div>

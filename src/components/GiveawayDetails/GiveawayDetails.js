@@ -8,7 +8,7 @@ const GiveawayDetails = () => {
   let location = useLocation();
   const amount = location.state.amount / 10 ** 18;
   const endTime = parseInt(location.state.deadline);
-  var gelatoHref = "https://app.gelato.network/task/" + location.state.taskId + "?chainId=4";
+  var gelatoHref = "https://app.gelato.network/task/" + location.state.taskId + "?chainId=137";
   const hasEnded = (Date.now()/1000)>parseInt(location.state.deadline);
   const isProcessing = location.state.isProcessing;
 

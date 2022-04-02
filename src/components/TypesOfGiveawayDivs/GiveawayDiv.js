@@ -31,6 +31,7 @@ const GiveawayDiv = ({ typeOfGiveaway }) => {
 
     let web3js;
     web3js = new Web3(window.web3.currentProvider);
+    let currBlock = await web3js.eth.getBlockNumber();
     setLoading(true);
     const contract = new web3js.eth.Contract(
       contractABI,
@@ -54,11 +55,14 @@ const GiveawayDiv = ({ typeOfGiveaway }) => {
         alert(error);
       });
 
-      contract.events.GiveawayParticipated({}, function (error, event) {
-        console.log(event);
+      participateGiveawayCall.on("receipt", function (receipt) {
+        console.log(receipt.events);
         setLoading(false);
-        navigate("/participated-giveaways", { state: event });
+        navigate("/participated-giveaways", {
+          state: receipt.events.GiveawayParticipated.returnValues
+        });
       });
+
     } catch (error) {
       setLoading(false);
       console.log(error);
@@ -187,8 +191,9 @@ const GiveawayDiv = ({ typeOfGiveaway }) => {
                   target="_blank"
                   className="normalText"
                   style={{
-                    fontSize: "30px",
+                    fontSize: "20px",
                     color: "blue",
+                    textAlign: "center",
                     textDecoration: "underline",
                     cursor: "pointer",
                   }}

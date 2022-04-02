@@ -146,7 +146,7 @@ const HomePage = () => {
         )}
       </div>
     </div>}
-    {loading && <Loader/>}
+    {/* {loading && <Loader/>} */}
   </>
 };
 

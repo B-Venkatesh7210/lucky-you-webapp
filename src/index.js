@@ -6,8 +6,8 @@ import App from "./App";
 import { MoralisProvider } from "react-moralis";
 import { BrowserRouter } from "react-router-dom";
 
-const serverUrl = "https://cnmzkmj0puwx.usemoralis.com:2053/server";
-const appId = "jfYBAv1hRltfFcLJkMlDlsPf7p2Ls88pQ50JnFQw";
+const serverUrl = "https://vyoiaqjuyaxb.usemoralis.com:2053/server";
+const appId = "Cokd9mczsnd1q3YAZsy2zI0IKLlnVIxKWf1Hfdt8";
 
 ReactDOM.render(
   <BrowserRouter>

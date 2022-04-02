@@ -116,6 +116,7 @@ const NftPage = () => {
                     timestamp: typeOfGiveaway.timestamp,
                     isLive: typeOfGiveaway.isLive,
                     uniqueId: typeOfGiveaway.uniqueId,
+                    tokenId: tokenId,
                     url: url,
                   })
                   .then(() => {

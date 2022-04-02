@@ -1,5 +1,5 @@
 const config = {
-  contractAddress: "0x7a973b7110A69e2d47422DD5813D6ac6963C18a0", // final contract
+  contractAddress: "0x382Eec29dD72D117fB7796bf183A3258e0f134EA", // final contract
   nftContractAddress: "0x85B40ff3D24ab9f68FfC46f5DD63A454f4E2A510", // final nft contract
 };
 

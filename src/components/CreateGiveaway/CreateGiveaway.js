@@ -45,7 +45,7 @@ const CreateGiveaway = () => {
     );
 
     let _deadline = parseInt(formData.deadline);
-    let actualDeadline = Math.floor(Date.now() / 1000) + _deadline * 60; //86400 se multiply kardena
+    let actualDeadline = Math.floor(Date.now() / 1000) + (_deadline * 86400); //86400 se multiply kardena
     console.log(actualDeadline);
 
     try {
